@@ -1,0 +1,5 @@
+.DS_Store
+.pnpm-store/
+tmp/
+*.pdf
+iranian-ratios-bilingual.html
