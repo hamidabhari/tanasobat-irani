@@ -954,6 +954,13 @@ html&gt;body{padding:0}&lt;/style&gt;
       stroke: color-mix(in srgb, var(--muted) 48%, transparent);
       stroke-width: 1.4;
     }
+    #iranian-ratios-lab .ir-karbandi-double {
+      fill: none;
+      stroke: var(--ink);
+      stroke-width: 2;
+    }
+    #iranian-ratios-lab .ir-karbandi svg,
+    #iranian-ratios-lab .ir-output svg { height: auto; aspect-ratio: 990 / 950; }
     #iranian-ratios-lab .ir-helper { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 5 5; }
     #iranian-ratios-lab .ir-reference-circle {
       fill: color-mix(in srgb, var(--yellow) 20%, transparent);
@@ -972,6 +979,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iranian-ratios-lab .ir-dim-text { fill: var(--muted); font-size: 17px; }
     #iranian-ratios-lab .ir-angle-text { fill: var(--accent); font-size: 17px; font-weight: 500; }
     #iranian-ratios-lab .ir-controls { padding-top: 18px; }
+    #iranian-ratios-lab .ir-control-group + .ir-control-group { margin-top: 18px; }
     #iranian-ratios-lab .ir-control-row { display: flex; align-items: center; gap: 14px; }
     #iranian-ratios-lab label { font-size: 14px; color: var(--muted); white-space: nowrap; }
     #iranian-ratios-lab input[type=&quot;range&quot;] { width: 100%; accent-color: var(--accent); cursor: pointer; }
@@ -1017,18 +1025,20 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;div id=&quot;ir-land-live&quot; class=&quot;ir-live&quot; aria-live=&quot;polite&quot;&gt;زمین ۱۲&lt;/div&gt;
     &lt;/header&gt;
     &lt;div class=&quot;ir-stage&quot;&gt;
-      &lt;svg id=&quot;ir-svg&quot; viewBox=&quot;0 0 720 360&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-svg-title ir-svg-desc&quot;&gt;
+      &lt;svg id=&quot;ir-svg&quot; viewBox=&quot;-280 0 990 430&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-svg-title ir-svg-desc&quot;&gt;
         &lt;title id=&quot;ir-svg-title&quot;&gt;هندسهٔ زمین ایرانی&lt;/title&gt;
         &lt;desc id=&quot;ir-svg-desc&quot;&gt;مستطیلی با طول ثابت، عرض متغیر و زاویه‌ای میان عرض و قطر.&lt;/desc&gt;
         &lt;g id=&quot;ir-drawing&quot;&gt;&lt;/g&gt;
       &lt;/svg&gt;
     &lt;/div&gt;
     &lt;div class=&quot;ir-controls&quot;&gt;
-      &lt;div class=&quot;ir-control-row&quot;&gt;
-        &lt;label for=&quot;ir-slider&quot;&gt;شمارهٔ زمین&lt;/label&gt;
-        &lt;input id=&quot;ir-slider&quot; type=&quot;range&quot; min=&quot;8&quot; max=&quot;20&quot; step=&quot;1&quot; value=&quot;12&quot; aria-valuemin=&quot;8&quot; aria-valuemax=&quot;20&quot; aria-valuenow=&quot;12&quot;&gt;
+      &lt;div class=&quot;ir-control-group&quot;&gt;
+        &lt;div class=&quot;ir-control-row&quot;&gt;
+          &lt;label for=&quot;ir-slider&quot;&gt;شمارهٔ زمین&lt;/label&gt;
+          &lt;input id=&quot;ir-slider&quot; type=&quot;range&quot; min=&quot;8&quot; max=&quot;20&quot; step=&quot;1&quot; value=&quot;12&quot; aria-valuemin=&quot;8&quot; aria-valuemax=&quot;20&quot; aria-valuenow=&quot;12&quot;&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;ir-land-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۰&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۴&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;span&gt;۱۸&lt;/span&gt;&lt;span&gt;۲۰&lt;/span&gt;&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۰&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۴&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;span&gt;۱۸&lt;/span&gt;&lt;span&gt;۲۰&lt;/span&gt;&lt;/div&gt;
       &lt;div class=&quot;ir-readout&quot; aria-live=&quot;polite&quot;&gt;
         &lt;span&gt;زاویه: &lt;b id=&quot;ir-angle-value&quot;&gt;۳۰°&lt;/b&gt;&lt;/span&gt;
         &lt;span&gt;عرض ÷ طول: &lt;b id=&quot;ir-ratio-value&quot;&gt;۱٫۷۳۲&lt;/b&gt;&lt;/span&gt;
@@ -1040,11 +1050,53 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;h2 id=&quot;ir-karbandi-title&quot;&gt;ترسیم کاربندی&lt;/h2&gt;
     &lt;/header&gt;
     &lt;div class=&quot;ir-stage&quot;&gt;
-      &lt;svg id=&quot;ir-karbandi-svg&quot; viewBox=&quot;0 0 720 360&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-karbandi-svg-title ir-karbandi-svg-desc&quot;&gt;
+      &lt;svg id=&quot;ir-karbandi-svg&quot; viewBox=&quot;-280 -200 990 950&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-karbandi-svg-title ir-karbandi-svg-desc&quot;&gt;
         &lt;title id=&quot;ir-karbandi-svg-title&quot;&gt;زمین کاربندی&lt;/title&gt;
-        &lt;desc id=&quot;ir-karbandi-svg-desc&quot;&gt;مستطیل زمین با یک کمان یک‌چهارم دایره و شعاع‌های امتدادیافته تا اضلاع.&lt;/desc&gt;
+        &lt;desc id=&quot;ir-karbandi-svg-desc&quot;&gt;زمین طوسی با کمان و شعاع‌ها، همراه با زمینی مشکی و دو برابر بزرگ‌تر که مرکز آن بر مرکز کمان منطبق است.&lt;/desc&gt;
         &lt;g id=&quot;ir-karbandi-drawing&quot;&gt;&lt;/g&gt;
       &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ir-controls&quot;&gt;
+      &lt;div class=&quot;ir-control-group&quot;&gt;
+        &lt;div class=&quot;ir-control-row&quot;&gt;
+          &lt;label for=&quot;ir-karbandi-slider&quot;&gt;اضلاع کاربندی: &lt;b id=&quot;ir-karbandi-value&quot;&gt;۲&lt;/b&gt;&lt;/label&gt;
+          &lt;input id=&quot;ir-karbandi-slider&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;16&quot; step=&quot;1&quot; value=&quot;2&quot; aria-valuemin=&quot;1&quot; aria-valuemax=&quot;16&quot; aria-valuenow=&quot;2&quot;&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;ir-karbandi-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۱&lt;/span&gt;&lt;span&gt;۴&lt;/span&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ir-control-group&quot;&gt;
+        &lt;div class=&quot;ir-control-row&quot;&gt;
+          &lt;label for=&quot;ir-rotation-divisor-slider&quot;&gt;ضریب چرخش: &lt;b id=&quot;ir-rotation-divisor-value&quot;&gt;۲&lt;/b&gt;&lt;/label&gt;
+          &lt;input id=&quot;ir-rotation-divisor-slider&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;16&quot; step=&quot;1&quot; value=&quot;2&quot; aria-valuemin=&quot;1&quot; aria-valuemax=&quot;16&quot; aria-valuenow=&quot;2&quot;&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;ir-rotation-divisor-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۱&lt;/span&gt;&lt;span&gt;۴&lt;/span&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;ir-shell ir-karbandi ir-output&quot; aria-labelledby=&quot;ir-output-title&quot;&gt;
+    &lt;header class=&quot;ir-head&quot;&gt;
+      &lt;h2 id=&quot;ir-output-title&quot;&gt;خروجی&lt;/h2&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;ir-stage&quot;&gt;
+      &lt;svg id=&quot;ir-output-svg&quot; viewBox=&quot;-280 -200 990 950&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-output-svg-title ir-output-svg-desc&quot;&gt;
+        &lt;title id=&quot;ir-output-svg-title&quot;&gt;خروجی کاربندی&lt;/title&gt;
+        &lt;desc id=&quot;ir-output-svg-desc&quot;&gt;خطوط مشکی برش‌خورده همراه با کمان و شعاع‌های طوسی کاربندی.&lt;/desc&gt;
+        &lt;g id=&quot;ir-output-drawing&quot;&gt;&lt;/g&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;ir-output-options&quot; class=&quot;viz-row&quot; role=&quot;radiogroup&quot; aria-label=&quot;نوع خروجی&quot;&gt;
+      &lt;div class=&quot;form-check&quot;&gt;
+        &lt;input class=&quot;form-check-input&quot; id=&quot;ir-output-quarter&quot; type=&quot;radio&quot; name=&quot;ir-output-mode&quot; value=&quot;quarter&quot; checked&gt;
+        &lt;label class=&quot;form-check-label&quot; id=&quot;ir-output-quarter-label&quot; for=&quot;ir-output-quarter&quot;&gt;یک‌چهارم کاربندی&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-check&quot;&gt;
+        &lt;input class=&quot;form-check-input&quot; id=&quot;ir-output-half&quot; type=&quot;radio&quot; name=&quot;ir-output-mode&quot; value=&quot;half&quot;&gt;
+        &lt;label class=&quot;form-check-label&quot; id=&quot;ir-output-half-label&quot; for=&quot;ir-output-half&quot;&gt;نیم‌کار&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-check&quot;&gt;
+        &lt;input class=&quot;form-check-input&quot; id=&quot;ir-output-full&quot; type=&quot;radio&quot; name=&quot;ir-output-mode&quot; value=&quot;full&quot;&gt;
+        &lt;label class=&quot;form-check-label&quot; id=&quot;ir-output-full-label&quot; for=&quot;ir-output-full&quot;&gt;کاربندی کامل&lt;/label&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
   &lt;/section&gt;
   &lt;script&gt;
@@ -1052,8 +1104,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       const root = document.getElementById(&#x27;iranian-ratios-lab&#x27;);
       const languageToggle = root.querySelector(&#x27;#ir-language-toggle&#x27;);
       const slider = root.querySelector(&#x27;#ir-slider&#x27;);
+      const karbandiSlider = root.querySelector(&#x27;#ir-karbandi-slider&#x27;);
+      const karbandiValue = root.querySelector(&#x27;#ir-karbandi-value&#x27;);
+      const rotationDivisorSlider = root.querySelector(&#x27;#ir-rotation-divisor-slider&#x27;);
+      const rotationDivisorValue = root.querySelector(&#x27;#ir-rotation-divisor-value&#x27;);
       const drawing = root.querySelector(&#x27;#ir-drawing&#x27;);
       const karbandiDrawing = root.querySelector(&#x27;#ir-karbandi-drawing&#x27;);
+      const outputDrawing = root.querySelector(&#x27;#ir-output-drawing&#x27;);
+      const outputOptions = root.querySelector(&#x27;#ir-output-options&#x27;);
       const landLive = root.querySelector(&#x27;#ir-land-live&#x27;);
       const angleValue = root.querySelector(&#x27;#ir-angle-value&#x27;);
       const ratioValue = root.querySelector(&#x27;#ir-ratio-value&#x27;);
@@ -1062,16 +1120,20 @@ html&gt;body{padding:0}&lt;/style&gt;
           dir: &#x27;rtl&#x27;, locale: &#x27;fa-IR&#x27;, toggle: &#x27;EN&#x27;, toggleLabel: &#x27;Switch to English&#x27;,
           title: &#x27;ترسیم زمین‌های ایرانی&#x27;, landLive: n =&gt; `زمین ${n}`,
           landSvgTitle: &#x27;هندسهٔ زمین ایرانی&#x27;, landSvgDesc: &#x27;مستطیلی با طول ثابت، عرض متغیر و زاویه‌ای میان عرض و قطر.&#x27;,
-          landSlider: &#x27;شمارهٔ زمین&#x27;, angle: &#x27;زاویه&#x27;, ratio: &#x27;عرض ÷ طول&#x27;,
-          karbandiTitle: &#x27;ترسیم کاربندی&#x27;, karbandiSvgTitle: &#x27;زمین کاربندی&#x27;, karbandiSvgDesc: &#x27;مستطیل زمین با یک کمان یک‌چهارم دایره و شعاع‌های امتدادیافته تا اضلاع.&#x27;,
+          landSlider: &#x27;شمارهٔ زمین&#x27;, karbandiSlider: &#x27;اضلاع کاربندی&#x27;, rotationDivisor: &#x27;ضریب چرخش&#x27;, angle: &#x27;زاویه&#x27;, ratio: &#x27;عرض ÷ طول&#x27;,
+          karbandiTitle: &#x27;ترسیم کاربندی&#x27;, karbandiSvgTitle: &#x27;زمین کاربندی&#x27;, karbandiSvgDesc: &#x27;زمین طوسی با کمان و شعاع‌ها، همراه با زمینی مشکی و دو برابر بزرگ‌تر که مرکز آن بر مرکز کمان منطبق است.&#x27;,
+          outputTitle: &#x27;خروجی&#x27;, outputSvgTitle: &#x27;خروجی کاربندی&#x27;, outputSvgDesc: &#x27;خطوط مشکی برش‌خورده همراه با کمان و شعاع‌های طوسی کاربندی.&#x27;,
+          outputOptions: &#x27;نوع خروجی&#x27;, outputQuarter: &#x27;یک‌چهارم کاربندی&#x27;, outputHalf: &#x27;نیم‌کار&#x27;, outputFull: &#x27;کاربندی کامل&#x27;,
           length: &#x27;طول&#x27;, width: &#x27;عرض&#x27;, diagonal: &#x27;قطر&#x27;
         },
         en: {
           dir: &#x27;ltr&#x27;, locale: &#x27;en-US&#x27;, toggle: &#x27;FA&#x27;, toggleLabel: &#x27;Switch to Persian&#x27;,
           title: &#x27;Iranian Proportion Plots&#x27;, landLive: n =&gt; `Plot ${n}`,
           landSvgTitle: &#x27;Iranian plot geometry&#x27;, landSvgDesc: &#x27;A rectangle with a fixed length, variable width, and an angle between the width and diagonal.&#x27;,
-          landSlider: &#x27;Plot number&#x27;, angle: &#x27;Angle&#x27;, ratio: &#x27;Width ÷ length&#x27;,
-          karbandiTitle: &#x27;Karbandi Drawing&#x27;, karbandiSvgTitle: &#x27;Karbandi plot&#x27;, karbandiSvgDesc: &#x27;The plot rectangle with a quarter-circle arc and radial lines extended to its edges.&#x27;,
+          landSlider: &#x27;Plot number&#x27;, karbandiSlider: &#x27;Karbandi sides&#x27;, rotationDivisor: &#x27;Rotation divisor&#x27;, angle: &#x27;Angle&#x27;, ratio: &#x27;Width ÷ length&#x27;,
+          karbandiTitle: &#x27;Karbandi Drawing&#x27;, karbandiSvgTitle: &#x27;Karbandi plot&#x27;, karbandiSvgDesc: &#x27;The gray plot with its arc and radial lines, plus a black plot twice its size whose center coincides with the arc center.&#x27;,
+          outputTitle: &#x27;Output&#x27;, outputSvgTitle: &#x27;Karbandi output&#x27;, outputSvgDesc: &#x27;Trimmed black lines with the light-gray Karbandi arc and radial lines.&#x27;,
+          outputOptions: &#x27;Output type&#x27;, outputQuarter: &#x27;Quarter Karbandi&#x27;, outputHalf: &#x27;Half-work&#x27;, outputFull: &#x27;Full Karbandi&#x27;,
           length: &#x27;Length&#x27;, width: &#x27;Width&#x27;, diagonal: &#x27;Diagonal&#x27;
         }
       };
@@ -1097,6 +1159,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         const y = bottom - length;
         drawing.replaceChildren();
         karbandiDrawing.replaceChildren();
+        outputDrawing.replaceChildren();
         const circleX = x;
         const circleY = bottom;
         const circleR = 76;
@@ -1153,6 +1216,75 @@ html&gt;body{padding:0}&lt;/style&gt;
             class:&#x27;ir-karbandi-outline&#x27;
           }));
         }
+        const rotationCount = Number(karbandiSlider.value);
+        const rotationDivisor = Number(rotationDivisorSlider.value);
+        for (let i = 0; i &lt; rotationCount; i += 1) {
+          karbandiDrawing.append(el(&#x27;rect&#x27;, {
+            x:x-width,
+            y:bottom-length,
+            width:width*2,
+            height:length*2,
+            class:&#x27;ir-karbandi-double&#x27;,
+            transform:`rotate(${i * theta / rotationDivisor} ${x} ${bottom})`
+          }));
+        }
+        karbandiValue.textContent = formatInteger(rotationCount);
+        rotationDivisorValue.textContent = formatInteger(rotationDivisor);
+        karbandiSlider.setAttribute(&#x27;aria-valuenow&#x27;, rotationCount);
+        karbandiSlider.setAttribute(&#x27;aria-valuetext&#x27;, `${t.karbandiSlider}: ${formatInteger(rotationCount)}`);
+        rotationDivisorSlider.setAttribute(&#x27;aria-valuenow&#x27;, rotationDivisor);
+        rotationDivisorSlider.setAttribute(&#x27;aria-valuetext&#x27;, `${t.rotationDivisor}: ${formatInteger(rotationDivisor)}`);
+        const outputDefs = el(&#x27;defs&#x27;);
+        const outputClip = el(&#x27;clipPath&#x27;, {id:&#x27;ir-output-clip&#x27;, clipPathUnits:&#x27;userSpaceOnUse&#x27;});
+        outputClip.append(el(&#x27;rect&#x27;, {x, y, width, height:length}));
+        outputDefs.append(outputClip);
+        const outputQuarter = el(&#x27;g&#x27;);
+        const outputLines = el(&#x27;g&#x27;, {&#x27;clip-path&#x27;:&#x27;url(#ir-output-clip)&#x27;});
+        for (let i = 0; i &lt; rotationCount; i += 1) {
+          outputLines.append(el(&#x27;rect&#x27;, {
+            x:x-width,
+            y:bottom-length,
+            width:width*2,
+            height:length*2,
+            class:&#x27;ir-karbandi-double&#x27;,
+            transform:`rotate(${i * theta / rotationDivisor} ${x} ${bottom})`
+          }));
+        }
+        outputQuarter.append(outputLines);
+        outputQuarter.append(el(&#x27;path&#x27;, {
+          d:`M ${x} ${bottom-karbandiRadius} A ${karbandiRadius} ${karbandiRadius} 0 0 1 ${x+karbandiRadius} ${bottom}`,
+          class:&#x27;ir-karbandi-outline&#x27;
+        }));
+        for (let outputAngle = theta; outputAngle &lt; 90 - 0.0001; outputAngle += theta) {
+          const radians = outputAngle * Math.PI / 180;
+          const dx = Math.cos(radians);
+          const dy = Math.sin(radians);
+          const reach = Math.min(width / dx, length / dy);
+          outputQuarter.append(el(&#x27;line&#x27;, {
+            x1:x,
+            y1:bottom,
+            x2:x + reach * dx,
+            y2:bottom - reach * dy,
+            class:&#x27;ir-karbandi-outline&#x27;
+          }));
+        }
+        outputQuarter.append(el(&#x27;rect&#x27;, {x, y, width, height:length, class:&#x27;ir-karbandi-outline&#x27;}));
+        outputDrawing.append(outputDefs);
+        const outputMode = root.querySelector(&#x27;input[name=&quot;ir-output-mode&quot;]:checked&#x27;).value;
+        outputDrawing.append(outputQuarter);
+        if (outputMode === &#x27;half&#x27; || outputMode === &#x27;full&#x27;) {
+          const mirroredY = outputQuarter.cloneNode(true);
+          mirroredY.setAttribute(&#x27;transform&#x27;, `matrix(-1 0 0 1 ${2*x} 0)`);
+          outputDrawing.append(mirroredY);
+        }
+        if (outputMode === &#x27;full&#x27;) {
+          const mirroredX = outputQuarter.cloneNode(true);
+          mirroredX.setAttribute(&#x27;transform&#x27;, `matrix(1 0 0 -1 0 ${2*bottom})`);
+          outputDrawing.append(mirroredX);
+          const mirroredXY = outputQuarter.cloneNode(true);
+          mirroredXY.setAttribute(&#x27;transform&#x27;, `matrix(-1 0 0 -1 ${2*x} ${2*bottom})`);
+          outputDrawing.append(mirroredXY);
+        }
         landLive.textContent = t.landLive(formatInteger(n));
         angleValue.textContent = `${formatAngle(theta)}°`;
         ratioValue.textContent = formatRatio(ratio);
@@ -1173,17 +1305,31 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.querySelector(&#x27;#ir-karbandi-title&#x27;).textContent = t.karbandiTitle;
         root.querySelector(&#x27;#ir-karbandi-svg-title&#x27;).textContent = t.karbandiSvgTitle;
         root.querySelector(&#x27;#ir-karbandi-svg-desc&#x27;).textContent = t.karbandiSvgDesc;
+        root.querySelector(&#x27;#ir-output-title&#x27;).textContent = t.outputTitle;
+        root.querySelector(&#x27;#ir-output-svg-title&#x27;).textContent = t.outputSvgTitle;
+        root.querySelector(&#x27;#ir-output-svg-desc&#x27;).textContent = t.outputSvgDesc;
+        outputOptions.setAttribute(&#x27;aria-label&#x27;, t.outputOptions);
+        root.querySelector(&#x27;#ir-output-quarter-label&#x27;).textContent = t.outputQuarter;
+        root.querySelector(&#x27;#ir-output-half-label&#x27;).textContent = t.outputHalf;
+        root.querySelector(&#x27;#ir-output-full-label&#x27;).textContent = t.outputFull;
         root.querySelector(&#x27;label[for=&quot;ir-slider&quot;]&#x27;).textContent = t.landSlider;
+        root.querySelector(&#x27;label[for=&quot;ir-karbandi-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.karbandiSlider}: `;
+        root.querySelector(&#x27;label[for=&quot;ir-rotation-divisor-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.rotationDivisor}: `;
         const readouts = root.querySelectorAll(&#x27;.ir-readout&#x27;);
         readouts[0].querySelectorAll(&#x27;span&#x27;)[0].childNodes[0].nodeValue = `${t.angle}: `;
         readouts[0].querySelectorAll(&#x27;span&#x27;)[1].childNodes[0].nodeValue = `${t.ratio}: `;
-        root.querySelectorAll(&#x27;.ir-scale&#x27;).forEach(scale =&gt; {
-          [8,10,12,14,16,18,20].forEach((value,index) =&gt; { scale.children[index].textContent = formatInteger(value); });
-        });
+        [8,10,12,14,16,18,20].forEach((value,index) =&gt; { root.querySelector(&#x27;#ir-land-scale&#x27;).children[index].textContent = formatInteger(value); });
+        [1,4,8,12,16].forEach((value,index) =&gt; { root.querySelector(&#x27;#ir-karbandi-scale&#x27;).children[index].textContent = formatInteger(value); });
+        [1,4,8,12,16].forEach((value,index) =&gt; { root.querySelector(&#x27;#ir-rotation-divisor-scale&#x27;).children[index].textContent = formatInteger(value); });
         slider.setAttribute(&#x27;aria-label&#x27;, t.landSlider);
+        karbandiSlider.setAttribute(&#x27;aria-label&#x27;, t.karbandiSlider);
+        rotationDivisorSlider.setAttribute(&#x27;aria-label&#x27;, t.rotationDivisor);
         draw(Number(slider.value));
       }
       slider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
+      karbandiSlider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
+      rotationDivisorSlider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
+      outputOptions.addEventListener(&#x27;change&#x27;, () =&gt; draw(Number(slider.value)));
       languageToggle.addEventListener(&#x27;click&#x27;, () =&gt; applyLanguage(language === &#x27;fa&#x27; ? &#x27;en&#x27; : &#x27;fa&#x27;));
       applyLanguage(&#x27;fa&#x27;);
     })();
