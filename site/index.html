@@ -948,6 +948,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iranian-ratios-lab svg { display: block; width: 100%; height: 360px; }
     #iranian-ratios-lab svg text { fill: var(--ink); font-family: Tahoma, Arial, sans-serif; }
     #iranian-ratios-lab .ir-outline { fill: none; stroke: var(--ink); stroke-width: 2; }
+    #iranian-ratios-lab .ir-karbandi { margin-top: 18px; }
+    #iranian-ratios-lab .ir-karbandi-outline {
+      fill: none;
+      stroke: color-mix(in srgb, var(--muted) 48%, transparent);
+      stroke-width: 1.4;
+    }
     #iranian-ratios-lab .ir-helper { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 5 5; }
     #iranian-ratios-lab .ir-reference-circle {
       fill: color-mix(in srgb, var(--yellow) 20%, transparent);
@@ -985,14 +991,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       font-size: 14px;
     }
     #iranian-ratios-lab .ir-readout span + span { border-right: 1px solid var(--line); padding-right: 18px; }
-    #iranian-ratios-lab .ir-polygon-section { margin-top: 34px; }
-    #iranian-ratios-lab .ir-polygon-stage { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    #iranian-ratios-lab .ir-poly-circle { fill: none; stroke: color-mix(in srgb, var(--muted-foreground) 55%, transparent); stroke-width: 1.2; }
-    #iranian-ratios-lab .ir-poly-shape { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; }
-    #iranian-ratios-lab .ir-poly-radius { stroke: var(--ink); stroke-width: 2; }
-    #iranian-ratios-lab .ir-poly-dot { fill: var(--ink); }
-    #iranian-ratios-lab .ir-poly-arc { fill: none; stroke: var(--accent); stroke-width: 4; }
-    #iranian-ratios-lab .ir-poly-label { fill: var(--muted); font-size: 18px; font-weight: 500; }
+    #iranian-ratios-lab .ir-poly-shape {
+      fill: none;
+      stroke: color-mix(in srgb, var(--ink) 78%, transparent);
+      stroke-width: 1.5;
+      stroke-linejoin: round;
+    }
     @media (max-width: 520px) {
       #iranian-ratios-lab .ir-shell { padding: 14px; border-radius: 14px; }
       #iranian-ratios-lab .ir-head { align-items: center; }
@@ -1015,7 +1019,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;ir-stage&quot;&gt;
       &lt;svg id=&quot;ir-svg&quot; viewBox=&quot;0 0 720 360&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-svg-title ir-svg-desc&quot;&gt;
         &lt;title id=&quot;ir-svg-title&quot;&gt;هندسهٔ زمین ایرانی&lt;/title&gt;
-        &lt;desc id=&quot;ir-svg-desc&quot;&gt;مستطیلی با طول ثابت، عرض متناسب و قطری که زاویهٔ تعریف‌کننده را نشان می‌دهد.&lt;/desc&gt;
+        &lt;desc id=&quot;ir-svg-desc&quot;&gt;مستطیلی با طول ثابت، عرض متغیر و زاویه‌ای میان عرض و قطر.&lt;/desc&gt;
         &lt;g id=&quot;ir-drawing&quot;&gt;&lt;/g&gt;
       &lt;/svg&gt;
     &lt;/div&gt;
@@ -1027,66 +1031,48 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;div class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۰&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۴&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;span&gt;۱۸&lt;/span&gt;&lt;span&gt;۲۰&lt;/span&gt;&lt;/div&gt;
       &lt;div class=&quot;ir-readout&quot; aria-live=&quot;polite&quot;&gt;
         &lt;span&gt;زاویه: &lt;b id=&quot;ir-angle-value&quot;&gt;۳۰°&lt;/b&gt;&lt;/span&gt;
-        &lt;span&gt;عرض ÷ طول: &lt;b id=&quot;ir-ratio-value&quot;&gt;۰٫۵۷۷&lt;/b&gt;&lt;/span&gt;
+        &lt;span&gt;عرض ÷ طول: &lt;b id=&quot;ir-ratio-value&quot;&gt;۱٫۷۳۲&lt;/b&gt;&lt;/span&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;section class=&quot;ir-polygon-section&quot; aria-labelledby=&quot;ir-poly-title&quot;&gt;
-      &lt;header class=&quot;ir-head&quot;&gt;
-        &lt;h2 id=&quot;ir-poly-title&quot;&gt;چندضلعی‌های منتظم&lt;/h2&gt;
-        &lt;div id=&quot;ir-poly-live&quot; class=&quot;ir-live&quot; aria-live=&quot;polite&quot;&gt;۱۲ضلعی&lt;/div&gt;
-      &lt;/header&gt;
-      &lt;div class=&quot;ir-stage ir-polygon-stage&quot;&gt;
-        &lt;svg id=&quot;ir-poly-svg&quot; viewBox=&quot;0 0 720 360&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-poly-svg-title ir-poly-svg-desc&quot;&gt;
-          &lt;title id=&quot;ir-poly-svg-title&quot;&gt;چندضلعی منتظم محاط در دایره&lt;/title&gt;
-          &lt;desc id=&quot;ir-poly-svg-desc&quot;&gt;چندضلعی منتظم انتخاب‌شده با دو شعاع و زاویهٔ مرکزی آن.&lt;/desc&gt;
-          &lt;g id=&quot;ir-poly-drawing&quot;&gt;&lt;/g&gt;
-        &lt;/svg&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;ir-controls&quot;&gt;
-        &lt;div class=&quot;ir-control-row&quot;&gt;
-          &lt;label for=&quot;ir-poly-slider&quot;&gt;تعداد اضلاع&lt;/label&gt;
-          &lt;input id=&quot;ir-poly-slider&quot; type=&quot;range&quot; min=&quot;8&quot; max=&quot;20&quot; step=&quot;1&quot; value=&quot;12&quot; aria-valuemin=&quot;8&quot; aria-valuemax=&quot;20&quot; aria-valuenow=&quot;12&quot;&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۰&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۴&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;span&gt;۱۸&lt;/span&gt;&lt;span&gt;۲۰&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;ir-readout&quot; aria-live=&quot;polite&quot;&gt;
-          &lt;span&gt;زاویهٔ مرکزی: &lt;b id=&quot;ir-poly-angle-value&quot;&gt;۳۰°&lt;/b&gt;&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/section&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;ir-shell ir-karbandi&quot; aria-labelledby=&quot;ir-karbandi-title&quot;&gt;
+    &lt;header class=&quot;ir-head&quot;&gt;
+      &lt;h2 id=&quot;ir-karbandi-title&quot;&gt;ترسیم کاربندی&lt;/h2&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;ir-stage&quot;&gt;
+      &lt;svg id=&quot;ir-karbandi-svg&quot; viewBox=&quot;0 0 720 360&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-karbandi-svg-title ir-karbandi-svg-desc&quot;&gt;
+        &lt;title id=&quot;ir-karbandi-svg-title&quot;&gt;زمین کاربندی&lt;/title&gt;
+        &lt;desc id=&quot;ir-karbandi-svg-desc&quot;&gt;مستطیل زمین با یک کمان یک‌چهارم دایره و شعاع‌های امتدادیافته تا اضلاع.&lt;/desc&gt;
+        &lt;g id=&quot;ir-karbandi-drawing&quot;&gt;&lt;/g&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
   &lt;/section&gt;
   &lt;script&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;iranian-ratios-lab&#x27;);
       const languageToggle = root.querySelector(&#x27;#ir-language-toggle&#x27;);
       const slider = root.querySelector(&#x27;#ir-slider&#x27;);
-      const polySlider = root.querySelector(&#x27;#ir-poly-slider&#x27;);
       const drawing = root.querySelector(&#x27;#ir-drawing&#x27;);
-      const polyDrawing = root.querySelector(&#x27;#ir-poly-drawing&#x27;);
+      const karbandiDrawing = root.querySelector(&#x27;#ir-karbandi-drawing&#x27;);
       const landLive = root.querySelector(&#x27;#ir-land-live&#x27;);
-      const polyLive = root.querySelector(&#x27;#ir-poly-live&#x27;);
       const angleValue = root.querySelector(&#x27;#ir-angle-value&#x27;);
       const ratioValue = root.querySelector(&#x27;#ir-ratio-value&#x27;);
-      const polyAngleValue = root.querySelector(&#x27;#ir-poly-angle-value&#x27;);
       const copy = {
         fa: {
           dir: &#x27;rtl&#x27;, locale: &#x27;fa-IR&#x27;, toggle: &#x27;EN&#x27;, toggleLabel: &#x27;Switch to English&#x27;,
           title: &#x27;ترسیم زمین‌های ایرانی&#x27;, landLive: n =&gt; `زمین ${n}`,
-          landSvgTitle: &#x27;هندسهٔ زمین ایرانی&#x27;, landSvgDesc: &#x27;مستطیلی با طول ثابت، عرض متناسب و قطری که زاویهٔ تعریف‌کننده را نشان می‌دهد.&#x27;,
+          landSvgTitle: &#x27;هندسهٔ زمین ایرانی&#x27;, landSvgDesc: &#x27;مستطیلی با طول ثابت، عرض متغیر و زاویه‌ای میان عرض و قطر.&#x27;,
           landSlider: &#x27;شمارهٔ زمین&#x27;, angle: &#x27;زاویه&#x27;, ratio: &#x27;عرض ÷ طول&#x27;,
-          length: &#x27;طول&#x27;, width: &#x27;عرض&#x27;, diagonal: &#x27;قطر&#x27;,
-          polyTitle: &#x27;چندضلعی‌های منتظم&#x27;, polyLive: n =&gt; `${n}ضلعی`,
-          polySvgTitle: &#x27;چندضلعی منتظم محاط در دایره&#x27;, polySvgDesc: &#x27;چندضلعی منتظم انتخاب‌شده با دو شعاع و زاویهٔ مرکزی آن.&#x27;,
-          polySlider: &#x27;تعداد اضلاع&#x27;, centralAngle: &#x27;زاویهٔ مرکزی&#x27;, regularPolygon: n =&gt; `${n}ضلعی منتظم`
+          karbandiTitle: &#x27;ترسیم کاربندی&#x27;, karbandiSvgTitle: &#x27;زمین کاربندی&#x27;, karbandiSvgDesc: &#x27;مستطیل زمین با یک کمان یک‌چهارم دایره و شعاع‌های امتدادیافته تا اضلاع.&#x27;,
+          length: &#x27;طول&#x27;, width: &#x27;عرض&#x27;, diagonal: &#x27;قطر&#x27;
         },
         en: {
           dir: &#x27;ltr&#x27;, locale: &#x27;en-US&#x27;, toggle: &#x27;FA&#x27;, toggleLabel: &#x27;Switch to Persian&#x27;,
           title: &#x27;Iranian Proportion Plots&#x27;, landLive: n =&gt; `Plot ${n}`,
-          landSvgTitle: &#x27;Iranian plot geometry&#x27;, landSvgDesc: &#x27;A rectangle with a fixed length, proportional width, and a diagonal defining the angle.&#x27;,
+          landSvgTitle: &#x27;Iranian plot geometry&#x27;, landSvgDesc: &#x27;A rectangle with a fixed length, variable width, and an angle between the width and diagonal.&#x27;,
           landSlider: &#x27;Plot number&#x27;, angle: &#x27;Angle&#x27;, ratio: &#x27;Width ÷ length&#x27;,
-          length: &#x27;Length&#x27;, width: &#x27;Width&#x27;, diagonal: &#x27;Diagonal&#x27;,
-          polyTitle: &#x27;Regular Polygons&#x27;, polyLive: n =&gt; `${n}-gon`,
-          polySvgTitle: &#x27;Regular polygon inscribed in a circle&#x27;, polySvgDesc: &#x27;The selected regular polygon with two radii and its central angle.&#x27;,
-          polySlider: &#x27;Number of sides&#x27;, centralAngle: &#x27;Central angle&#x27;, regularPolygon: n =&gt; `Regular ${n}-gon`
+          karbandiTitle: &#x27;Karbandi Drawing&#x27;, karbandiSvgTitle: &#x27;Karbandi plot&#x27;, karbandiSvgDesc: &#x27;The plot rectangle with a quarter-circle arc and radial lines extended to its edges.&#x27;,
+          length: &#x27;Length&#x27;, width: &#x27;Width&#x27;, diagonal: &#x27;Diagonal&#x27;
         }
       };
       let language = &#x27;fa&#x27;;
@@ -1103,19 +1089,20 @@ html&gt;body{padding:0}&lt;/style&gt;
       function draw(n) {
         const t = copy[language];
         const theta = 360 / n;
-        const ratio = Math.tan(theta * Math.PI / 180);
-        const length = 220;
+        const ratio = 1 / Math.tan(theta * Math.PI / 180);
+        const length = 140;
         const width = length * ratio;
-        const x = 250;
-        const y = 102;
-        const bottom = y + length;
+        const x = 180;
+        const bottom = 272;
+        const y = bottom - length;
         drawing.replaceChildren();
+        karbandiDrawing.replaceChildren();
         const circleX = x;
-        const circleY = y;
+        const circleY = bottom;
         const circleR = 76;
         drawing.append(el(&#x27;circle&#x27;, {cx:circleX, cy:circleY, r:circleR, class:&#x27;ir-reference-circle&#x27;}));
         for (let i = 0; i &lt; n; i += 1) {
-          const a = -Math.PI / 2 + i * Math.PI * 2 / n;
+          const a = i * Math.PI * 2 / n;
           drawing.append(el(&#x27;line&#x27;, {
             x1:circleX,
             y1:circleY,
@@ -1124,54 +1111,53 @@ html&gt;body{padding:0}&lt;/style&gt;
             class:&#x27;ir-reference&#x27;
           }));
         }
+        const polygonPoints = Array.from({length:n}, (_, i) =&gt; {
+          const a = i * Math.PI * 2 / n;
+          return `${circleX + circleR * Math.cos(a)},${circleY + circleR * Math.sin(a)}`;
+        }).join(&#x27; &#x27;);
+        drawing.append(el(&#x27;polygon&#x27;, {points:polygonPoints, class:&#x27;ir-poly-shape&#x27;}));
         drawing.append(el(&#x27;rect&#x27;, {x, y, width, height:length, class:&#x27;ir-outline&#x27;}));
-        drawing.append(el(&#x27;line&#x27;, {x1:x, y1:y, x2:x+width, y2:bottom, class:&#x27;ir-diagonal&#x27;}));
+        drawing.append(el(&#x27;line&#x27;, {x1:x, y1:bottom, x2:x+width, y2:y, class:&#x27;ir-diagonal&#x27;}));
         const r = 46;
-        const arcEndX = x + r * Math.sin(theta * Math.PI / 180);
-        const arcEndY = y + r * Math.cos(theta * Math.PI / 180);
-        drawing.append(el(&#x27;path&#x27;, {d:`M ${x} ${y+r} A ${r} ${r} 0 0 0 ${arcEndX} ${arcEndY}`, class:&#x27;ir-angle&#x27;}));
-        const outerArcX = x + circleR * Math.sin(theta * Math.PI / 180);
-        const outerArcY = y + circleR * Math.cos(theta * Math.PI / 180);
-        drawing.append(el(&#x27;path&#x27;, {d:`M ${x} ${y+circleR} A ${circleR} ${circleR} 0 0 0 ${outerArcX} ${outerArcY}`, class:&#x27;ir-reference-arc&#x27;}));
+        const arcEndX = x + r * Math.cos(theta * Math.PI / 180);
+        const arcEndY = bottom - r * Math.sin(theta * Math.PI / 180);
+        drawing.append(el(&#x27;path&#x27;, {d:`M ${x+r} ${bottom} A ${r} ${r} 0 0 0 ${arcEndX} ${arcEndY}`, class:&#x27;ir-angle&#x27;}));
+        const outerArcX = x + circleR * Math.cos(theta * Math.PI / 180);
+        const outerArcY = bottom - circleR * Math.sin(theta * Math.PI / 180);
+        drawing.append(el(&#x27;path&#x27;, {d:`M ${x+circleR} ${bottom} A ${circleR} ${circleR} 0 0 0 ${outerArcX} ${outerArcY}`, class:&#x27;ir-reference-arc&#x27;}));
         drawing.append(el(&#x27;text&#x27;, {x:x+width+28,y:y+length/2,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;ir-dim-text&#x27;}, t.length));
         drawing.append(el(&#x27;text&#x27;, {x:x+width/2,y:bottom+31,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;ir-dim-text&#x27;}, t.width));
-        const diagAngle = Math.atan2(length, width) * 180 / Math.PI;
+        const diagAngle = -theta;
         const diagLabelX = x + width * .58 + 17;
-        const diagLabelY = y + length * .58 - 7;
+        const diagLabelY = bottom - length * .58 - 7;
         drawing.append(el(&#x27;text&#x27;, {x:diagLabelX,y:diagLabelY,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;ir-dim-text&#x27;,transform:`rotate(${diagAngle} ${diagLabelX} ${diagLabelY})`}, t.diagonal));
-        drawing.append(el(&#x27;text&#x27;, {x:x+55,y:y+78,class:&#x27;ir-angle-text&#x27;}, `${formatAngle(theta)}°`));
+        drawing.append(el(&#x27;text&#x27;, {x:x+55,y:bottom-18,class:&#x27;ir-angle-text&#x27;}, `${formatAngle(theta)}°`));
+        karbandiDrawing.append(el(&#x27;rect&#x27;, {x, y, width, height:length, class:&#x27;ir-karbandi-outline&#x27;}));
+        const karbandiRadius = 76;
+        karbandiDrawing.append(el(&#x27;path&#x27;, {
+          d:`M ${x} ${bottom-karbandiRadius} A ${karbandiRadius} ${karbandiRadius} 0 0 1 ${x+karbandiRadius} ${bottom}`,
+          class:&#x27;ir-karbandi-outline&#x27;
+        }));
+        for (let karbandiAngle = theta; karbandiAngle &lt; 90 - 0.0001; karbandiAngle += theta) {
+          const radians = karbandiAngle * Math.PI / 180;
+          const dx = Math.cos(radians);
+          const dy = Math.sin(radians);
+          const distanceToRight = width / dx;
+          const distanceToTop = length / dy;
+          const reach = Math.min(distanceToRight, distanceToTop);
+          karbandiDrawing.append(el(&#x27;line&#x27;, {
+            x1:x,
+            y1:bottom,
+            x2:x + reach * dx,
+            y2:bottom - reach * dy,
+            class:&#x27;ir-karbandi-outline&#x27;
+          }));
+        }
         landLive.textContent = t.landLive(formatInteger(n));
         angleValue.textContent = `${formatAngle(theta)}°`;
         ratioValue.textContent = formatRatio(ratio);
         slider.setAttribute(&#x27;aria-valuenow&#x27;, n);
         slider.setAttribute(&#x27;aria-valuetext&#x27;, t.landLive(formatInteger(n)));
-        polyDrawing.replaceChildren();
-        const cx = 360;
-        const cy = 162;
-        const polyR = 120;
-        const points = Array.from({length:n}, (_, i) =&gt; {
-          const a = -Math.PI / 2 + i * Math.PI * 2 / n;
-          return [cx + polyR * Math.cos(a), cy + polyR * Math.sin(a)];
-        });
-        polyDrawing.append(el(&#x27;circle&#x27;, {cx, cy, r:polyR, class:&#x27;ir-poly-circle&#x27;}));
-        polyDrawing.append(el(&#x27;polygon&#x27;, {points:points.map(p =&gt; p.join(&#x27;,&#x27;)).join(&#x27; &#x27;), class:&#x27;ir-poly-shape&#x27;}));
-        polyDrawing.append(el(&#x27;line&#x27;, {x1:cx,y1:cy,x2:points[0][0],y2:points[0][1],class:&#x27;ir-poly-radius&#x27;}));
-        polyDrawing.append(el(&#x27;line&#x27;, {x1:cx,y1:cy,x2:points[1][0],y2:points[1][1],class:&#x27;ir-poly-radius&#x27;}));
-        const arcR = 46;
-        const arcStartX = cx;
-        const arcStartY = cy - arcR;
-        const arcEndAngle = -Math.PI / 2 + theta * Math.PI / 180;
-        const polyArcEndX = cx + arcR * Math.cos(arcEndAngle);
-        const polyArcEndY = cy + arcR * Math.sin(arcEndAngle);
-        polyDrawing.append(el(&#x27;path&#x27;, {d:`M ${arcStartX} ${arcStartY} A ${arcR} ${arcR} 0 0 1 ${polyArcEndX} ${polyArcEndY}`,class:&#x27;ir-poly-arc&#x27;}));
-        [points[0], points[1], [cx,cy]].forEach(p =&gt; polyDrawing.append(el(&#x27;circle&#x27;,{cx:p[0],cy:p[1],r:5,class:&#x27;ir-poly-dot&#x27;})));
-        const labelAngle = -Math.PI / 2 + theta * Math.PI / 360;
-        polyDrawing.append(el(&#x27;text&#x27;, {x:cx+72*Math.cos(labelAngle),y:cy+72*Math.sin(labelAngle)+6,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;ir-angle-text&#x27;}, `${formatAngle(theta)}°`));
-        polyDrawing.append(el(&#x27;text&#x27;, {x:cx,y:cy+polyR+42,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;ir-poly-label&#x27;}, t.regularPolygon(formatInteger(n))));
-        polyLive.textContent = t.polyLive(formatInteger(n));
-        polyAngleValue.textContent = `${formatAngle(theta)}°`;
-        polySlider.setAttribute(&#x27;aria-valuenow&#x27;, n);
-        polySlider.setAttribute(&#x27;aria-valuetext&#x27;, t.regularPolygon(formatInteger(n)));
       }
       function applyLanguage(nextLanguage) {
         language = nextLanguage;
@@ -1184,30 +1170,20 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.querySelector(&#x27;#ir-title&#x27;).textContent = t.title;
         root.querySelector(&#x27;#ir-svg-title&#x27;).textContent = t.landSvgTitle;
         root.querySelector(&#x27;#ir-svg-desc&#x27;).textContent = t.landSvgDesc;
+        root.querySelector(&#x27;#ir-karbandi-title&#x27;).textContent = t.karbandiTitle;
+        root.querySelector(&#x27;#ir-karbandi-svg-title&#x27;).textContent = t.karbandiSvgTitle;
+        root.querySelector(&#x27;#ir-karbandi-svg-desc&#x27;).textContent = t.karbandiSvgDesc;
         root.querySelector(&#x27;label[for=&quot;ir-slider&quot;]&#x27;).textContent = t.landSlider;
-        root.querySelector(&#x27;#ir-poly-title&#x27;).textContent = t.polyTitle;
-        root.querySelector(&#x27;#ir-poly-svg-title&#x27;).textContent = t.polySvgTitle;
-        root.querySelector(&#x27;#ir-poly-svg-desc&#x27;).textContent = t.polySvgDesc;
-        root.querySelector(&#x27;label[for=&quot;ir-poly-slider&quot;]&#x27;).textContent = t.polySlider;
         const readouts = root.querySelectorAll(&#x27;.ir-readout&#x27;);
         readouts[0].querySelectorAll(&#x27;span&#x27;)[0].childNodes[0].nodeValue = `${t.angle}: `;
         readouts[0].querySelectorAll(&#x27;span&#x27;)[1].childNodes[0].nodeValue = `${t.ratio}: `;
-        readouts[1].querySelector(&#x27;span&#x27;).childNodes[0].nodeValue = `${t.centralAngle}: `;
         root.querySelectorAll(&#x27;.ir-scale&#x27;).forEach(scale =&gt; {
           [8,10,12,14,16,18,20].forEach((value,index) =&gt; { scale.children[index].textContent = formatInteger(value); });
         });
         slider.setAttribute(&#x27;aria-label&#x27;, t.landSlider);
-        polySlider.setAttribute(&#x27;aria-label&#x27;, t.polySlider);
         draw(Number(slider.value));
       }
-      function syncAndDraw(source) {
-        const n = Number(source.value);
-        slider.value = n;
-        polySlider.value = n;
-        draw(n);
-      }
-      slider.addEventListener(&#x27;input&#x27;, () =&gt; syncAndDraw(slider));
-      polySlider.addEventListener(&#x27;input&#x27;, () =&gt; syncAndDraw(polySlider));
+      slider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
       languageToggle.addEventListener(&#x27;click&#x27;, () =&gt; applyLanguage(language === &#x27;fa&#x27; ? &#x27;en&#x27; : &#x27;fa&#x27;));
       applyLanguage(&#x27;fa&#x27;);
     })();
