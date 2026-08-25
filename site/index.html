@@ -943,13 +943,38 @@ html&gt;body{padding:0}&lt;/style&gt;
       margin-bottom: 14px;
     }
     #iranian-ratios-lab .ir-toolbar {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-bottom: 14px;
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+      background: color-mix(in srgb, var(--paper) 76%, transparent);
+      backdrop-filter: blur(18px) saturate(145%);
+      -webkit-backdrop-filter: blur(18px) saturate(145%);
+    }
+    #iranian-ratios-lab .ir-toolbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      width: min(100% - 28px, 780px);
+      min-height: 58px;
+      margin: 0 auto;
+    }
+    #iranian-ratios-lab .ir-page-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 500;
+    }
+    #iranian-ratios-lab .ir-toolbar-switches {
       direction: ltr;
       display: flex;
-      justify-content: flex-start;
       align-items: center;
       gap: 10px;
-      margin-bottom: 12px;
-      padding-left: 2px;
+      flex: 0 0 auto;
     }
     #iranian-ratios-lab .ir-switch {
       appearance: none;
@@ -998,13 +1023,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iranian-ratios-lab h2 { margin: 0; font-size: 20px; font-weight: 700; }
     #iranian-ratios-lab .ir-live { color: var(--accent); font-size: 16px; white-space: nowrap; }
     #iranian-ratios-lab .ir-stage {
-      min-height: 390px;
       display: grid;
       place-items: center;
       border-block: 1px solid var(--line);
       padding: 18px 0;
     }
-    #iranian-ratios-lab svg { display: block; width: 100%; height: 360px; }
+    #iranian-ratios-lab svg { display: block; width: 100%; height: auto; }
     #iranian-ratios-lab svg text { fill: var(--ink); font-family: Tahoma, Arial, sans-serif; }
     #iranian-ratios-lab .ir-outline { fill: none; stroke: var(--ink); stroke-width: 2; }
     #iranian-ratios-lab .ir-karbandi { margin-top: 18px; }
@@ -1018,8 +1042,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       stroke: var(--ink);
       stroke-width: 2;
     }
-    #iranian-ratios-lab .ir-karbandi svg,
-    #iranian-ratios-lab .ir-output svg { height: auto; aspect-ratio: 990 / 950; }
+    #iranian-ratios-lab .ir-output .ir-stage { padding-block: 18px; }
     #iranian-ratios-lab .ir-helper { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 5 5; }
     #iranian-ratios-lab .ir-reference-circle {
       fill: color-mix(in srgb, var(--yellow) 20%, transparent);
@@ -1072,31 +1095,43 @@ html&gt;body{padding:0}&lt;/style&gt;
       stroke-width: 1.5;
       stroke-linejoin: round;
     }
+    #iranian-ratios-lab .ir-footer {
+      padding: 30px 12px 14px;
+      color: color-mix(in srgb, var(--muted) 68%, transparent);
+      text-align: center;
+      font-size: 12px;
+    }
     @media (max-width: 520px) {
       #iranian-ratios-lab .ir-shell { padding: 14px; border-radius: 14px; }
       #iranian-ratios-lab .ir-head { align-items: center; }
       #iranian-ratios-lab h2 { font-size: 17px; }
-      #iranian-ratios-lab .ir-stage { min-height: 330px; padding: 8px 0; }
-      #iranian-ratios-lab svg { height: 320px; }
+      #iranian-ratios-lab .ir-page-title { font-size: 14px; }
+      #iranian-ratios-lab .ir-toolbar-inner { gap: 10px; min-height: 54px; }
+      #iranian-ratios-lab .ir-stage { padding: 12px 0; }
       #iranian-ratios-lab .ir-readout { gap: 10px; font-size: 12px; }
       #iranian-ratios-lab .ir-readout span + span { padding-right: 10px; }
     }
   &lt;/style&gt;
   &lt;div class=&quot;ir-toolbar&quot; aria-label=&quot;تنظیمات نمایش&quot;&gt;
-    &lt;button id=&quot;ir-language-toggle&quot; class=&quot;ir-switch ir-language-switch&quot; data-state=&quot;fa&quot; type=&quot;button&quot; aria-label=&quot;Switch to English&quot; aria-pressed=&quot;false&quot;&gt;
-      &lt;span class=&quot;ir-switch-track&quot; aria-hidden=&quot;true&quot;&gt;
-        &lt;span class=&quot;ir-switch-thumb&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;ir-switch-label&quot;&gt;فا&lt;/span&gt;
-        &lt;span class=&quot;ir-switch-label&quot;&gt;EN&lt;/span&gt;
-      &lt;/span&gt;
-    &lt;/button&gt;
-    &lt;button id=&quot;ir-theme-toggle&quot; class=&quot;ir-switch ir-theme-switch&quot; data-state=&quot;light&quot; type=&quot;button&quot; aria-label=&quot;تغییر به حالت شب&quot; aria-pressed=&quot;false&quot;&gt;
-      &lt;span class=&quot;ir-switch-track&quot; aria-hidden=&quot;true&quot;&gt;
-        &lt;span class=&quot;ir-switch-thumb&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;ir-switch-label&quot;&gt;☀&lt;/span&gt;
-        &lt;span class=&quot;ir-switch-label&quot;&gt;☾&lt;/span&gt;
-      &lt;/span&gt;
-    &lt;/button&gt;
+    &lt;div class=&quot;ir-toolbar-inner&quot;&gt;
+      &lt;h1 id=&quot;ir-page-title&quot; class=&quot;ir-page-title&quot;&gt;ترسیم کاربندی با تناسبات ایرانی&lt;/h1&gt;
+      &lt;div class=&quot;ir-toolbar-switches&quot;&gt;
+        &lt;button id=&quot;ir-language-toggle&quot; class=&quot;ir-switch ir-language-switch&quot; data-state=&quot;fa&quot; type=&quot;button&quot; aria-label=&quot;Switch to English&quot; aria-pressed=&quot;false&quot;&gt;
+          &lt;span class=&quot;ir-switch-track&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;span class=&quot;ir-switch-thumb&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;ir-switch-label&quot;&gt;فا&lt;/span&gt;
+            &lt;span class=&quot;ir-switch-label&quot;&gt;EN&lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/button&gt;
+        &lt;button id=&quot;ir-theme-toggle&quot; class=&quot;ir-switch ir-theme-switch&quot; data-state=&quot;light&quot; type=&quot;button&quot; aria-label=&quot;تغییر به حالت شب&quot; aria-pressed=&quot;false&quot;&gt;
+          &lt;span class=&quot;ir-switch-track&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;span class=&quot;ir-switch-thumb&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;ir-switch-label&quot;&gt;☀&lt;/span&gt;
+            &lt;span class=&quot;ir-switch-label&quot;&gt;☾&lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
   &lt;section class=&quot;ir-shell&quot; aria-labelledby=&quot;ir-title&quot;&gt;
     &lt;header class=&quot;ir-head&quot;&gt;
@@ -1138,15 +1173,15 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;ir-controls&quot;&gt;
       &lt;div class=&quot;ir-control-group&quot;&gt;
         &lt;div class=&quot;ir-control-row&quot;&gt;
-          &lt;label for=&quot;ir-karbandi-slider&quot;&gt;اضلاع کاربندی: &lt;b id=&quot;ir-karbandi-value&quot;&gt;۲&lt;/b&gt;&lt;/label&gt;
-          &lt;input id=&quot;ir-karbandi-slider&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;16&quot; step=&quot;1&quot; value=&quot;2&quot; aria-valuemin=&quot;1&quot; aria-valuemax=&quot;16&quot; aria-valuenow=&quot;2&quot;&gt;
+          &lt;label for=&quot;ir-karbandi-slider&quot;&gt;اضلاع کاربندی: &lt;b id=&quot;ir-karbandi-value&quot;&gt;۵&lt;/b&gt;&lt;/label&gt;
+          &lt;input id=&quot;ir-karbandi-slider&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;16&quot; step=&quot;1&quot; value=&quot;5&quot; aria-valuemin=&quot;1&quot; aria-valuemax=&quot;16&quot; aria-valuenow=&quot;5&quot;&gt;
         &lt;/div&gt;
         &lt;div id=&quot;ir-karbandi-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۱&lt;/span&gt;&lt;span&gt;۴&lt;/span&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;/div&gt;
       &lt;/div&gt;
       &lt;div class=&quot;ir-control-group&quot;&gt;
         &lt;div class=&quot;ir-control-row&quot;&gt;
-          &lt;label for=&quot;ir-rotation-divisor-slider&quot;&gt;ضریب چرخش: &lt;b id=&quot;ir-rotation-divisor-value&quot;&gt;۲&lt;/b&gt;&lt;/label&gt;
-          &lt;input id=&quot;ir-rotation-divisor-slider&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;16&quot; step=&quot;1&quot; value=&quot;2&quot; aria-valuemin=&quot;1&quot; aria-valuemax=&quot;16&quot; aria-valuenow=&quot;2&quot;&gt;
+          &lt;label for=&quot;ir-rotation-divisor-slider&quot;&gt;ضریب چرخش: &lt;b id=&quot;ir-rotation-divisor-value&quot;&gt;۱&lt;/b&gt;&lt;/label&gt;
+          &lt;input id=&quot;ir-rotation-divisor-slider&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;16&quot; step=&quot;1&quot; value=&quot;1&quot; aria-valuemin=&quot;1&quot; aria-valuemax=&quot;16&quot; aria-valuenow=&quot;1&quot;&gt;
         &lt;/div&gt;
         &lt;div id=&quot;ir-rotation-divisor-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۱&lt;/span&gt;&lt;span&gt;۴&lt;/span&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;/div&gt;
       &lt;/div&gt;
@@ -1157,7 +1192,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;h2 id=&quot;ir-output-title&quot;&gt;خروجی&lt;/h2&gt;
     &lt;/header&gt;
     &lt;div class=&quot;ir-stage&quot;&gt;
-      &lt;svg id=&quot;ir-output-svg&quot; viewBox=&quot;-280 -200 990 950&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-output-svg-title ir-output-svg-desc&quot;&gt;
+      &lt;svg id=&quot;ir-output-svg&quot; viewBox=&quot;-280 0 990 430&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-output-svg-title ir-output-svg-desc&quot;&gt;
         &lt;title id=&quot;ir-output-svg-title&quot;&gt;خروجی کاربندی&lt;/title&gt;
         &lt;desc id=&quot;ir-output-svg-desc&quot;&gt;خطوط مشکی برش‌خورده همراه با کمان و شعاع‌های طوسی کاربندی.&lt;/desc&gt;
         &lt;g id=&quot;ir-output-drawing&quot;&gt;&lt;/g&gt;
@@ -1178,6 +1213,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/section&gt;
+  &lt;footer id=&quot;ir-footer&quot; class=&quot;ir-footer&quot;&gt;© حمید ابهری - ۱۴۰۵&lt;/footer&gt;
   &lt;script&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;iranian-ratios-lab&#x27;);
@@ -1188,6 +1224,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       const karbandiValue = root.querySelector(&#x27;#ir-karbandi-value&#x27;);
       const rotationDivisorSlider = root.querySelector(&#x27;#ir-rotation-divisor-slider&#x27;);
       const rotationDivisorValue = root.querySelector(&#x27;#ir-rotation-divisor-value&#x27;);
+      const landSvg = root.querySelector(&#x27;#ir-svg&#x27;);
+      const karbandiSvg = root.querySelector(&#x27;#ir-karbandi-svg&#x27;);
+      const outputSvg = root.querySelector(&#x27;#ir-output-svg&#x27;);
       const drawing = root.querySelector(&#x27;#ir-drawing&#x27;);
       const karbandiDrawing = root.querySelector(&#x27;#ir-karbandi-drawing&#x27;);
       const outputDrawing = root.querySelector(&#x27;#ir-output-drawing&#x27;);
@@ -1199,6 +1238,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const copy = {
         fa: {
           dir: &#x27;rtl&#x27;, locale: &#x27;fa-IR&#x27;, toggle: &#x27;EN&#x27;, toggleLabel: &#x27;Switch to English&#x27;, toolbarLabel: &#x27;تنظیمات نمایش&#x27;, themeLight: &#x27;تغییر به حالت روز&#x27;, themeDark: &#x27;تغییر به حالت شب&#x27;,
+          pageTitle: &#x27;ترسیم کاربندی با تناسبات ایرانی&#x27;, footer: &#x27;© حمید ابهری - ۱۴۰۵&#x27;,
           title: &#x27;ترسیم زمین‌های ایرانی&#x27;, landLive: n =&gt; `زمین ${n}`,
           landSvgTitle: &#x27;هندسهٔ زمین ایرانی&#x27;, landSvgDesc: &#x27;مستطیلی با طول ثابت، عرض متغیر و زاویه‌ای میان عرض و قطر.&#x27;,
           landSlider: &#x27;شمارهٔ زمین&#x27;, karbandiSlider: &#x27;اضلاع کاربندی&#x27;, rotationDivisor: &#x27;ضریب چرخش&#x27;, angle: &#x27;زاویه&#x27;, ratio: &#x27;عرض ÷ طول&#x27;,
@@ -1209,6 +1249,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         },
         en: {
           dir: &#x27;ltr&#x27;, locale: &#x27;en-US&#x27;, toggle: &#x27;فا&#x27;, toggleLabel: &#x27;Switch to Persian&#x27;, toolbarLabel: &#x27;Display settings&#x27;, themeLight: &#x27;Switch to light mode&#x27;, themeDark: &#x27;Switch to dark mode&#x27;,
+          pageTitle: &#x27;Drawing Karbandi with Iranian Proportions&#x27;, footer: &#x27;© Hamid Abhari - 2026&#x27;,
           title: &#x27;Iranian Proportion Plots&#x27;, landLive: n =&gt; `Plot ${n}`,
           landSvgTitle: &#x27;Iranian plot geometry&#x27;, landSvgDesc: &#x27;A rectangle with a fixed length, variable width, and an angle between the width and diagonal.&#x27;,
           landSlider: &#x27;Plot number&#x27;, karbandiSlider: &#x27;Karbandi sides&#x27;, rotationDivisor: &#x27;Rotation divisor&#x27;, angle: &#x27;Angle&#x27;, ratio: &#x27;Width ÷ length&#x27;,
@@ -1239,6 +1280,15 @@ html&gt;body{padding:0}&lt;/style&gt;
         Object.entries(attrs).forEach(([k,v]) =&gt; node.setAttribute(k, v));
         if (text) node.textContent = text;
         return node;
+      };
+      const fitSvg = (svg, group, padding = 28) =&gt; {
+        const box = group.getBBox();
+        const minX = box.x - padding;
+        const minY = box.y - padding;
+        const width = box.width + padding * 2;
+        const height = box.height + padding * 2;
+        svg.setAttribute(&#x27;viewBox&#x27;, `${minX} ${minY} ${width} ${height}`);
+        svg.style.aspectRatio = `${width} / ${height}`;
       };
       function draw(n) {
         const t = copy[language];
@@ -1383,6 +1433,9 @@ html&gt;body{padding:0}&lt;/style&gt;
         ratioValue.textContent = formatRatio(ratio);
         slider.setAttribute(&#x27;aria-valuenow&#x27;, n);
         slider.setAttribute(&#x27;aria-valuetext&#x27;, t.landLive(formatInteger(n)));
+        fitSvg(landSvg, drawing);
+        fitSvg(karbandiSvg, karbandiDrawing);
+        fitSvg(outputSvg, outputDrawing);
       }
       function applyLanguage(nextLanguage) {
         language = nextLanguage;
@@ -1395,6 +1448,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         languageToggle.setAttribute(&#x27;aria-label&#x27;, t.toggleLabel);
         root.querySelector(&#x27;.ir-toolbar&#x27;).setAttribute(&#x27;aria-label&#x27;, t.toolbarLabel);
         themeToggle.setAttribute(&#x27;aria-label&#x27;, theme === &#x27;dark&#x27; ? t.themeLight : t.themeDark);
+        root.querySelector(&#x27;#ir-page-title&#x27;).textContent = t.pageTitle;
+        root.querySelector(&#x27;#ir-footer&#x27;).textContent = t.footer;
         root.querySelector(&#x27;#ir-title&#x27;).textContent = t.title;
         root.querySelector(&#x27;#ir-svg-title&#x27;).textContent = t.landSvgTitle;
         root.querySelector(&#x27;#ir-svg-desc&#x27;).textContent = t.landSvgDesc;
