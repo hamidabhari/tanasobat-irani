@@ -922,7 +922,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       width: 100%;
       max-width: 780px;
       margin: 0 auto;
+      color-scheme: light;
     }
+    #iranian-ratios-lab[data-theme=&quot;dark&quot;] { color-scheme: dark; }
     #iranian-ratios-lab * { box-sizing: border-box; }
     #iranian-ratios-lab[lang=&quot;fa&quot;] { font-family: &quot;Vazirmatn&quot;, Tahoma, Arial, sans-serif; }
     #iranian-ratios-lab[lang=&quot;fa&quot;] svg text { font-family: &quot;Vazirmatn&quot;, Tahoma, Arial, sans-serif; }
@@ -940,7 +942,59 @@ html&gt;body{padding:0}&lt;/style&gt;
       gap: 16px;
       margin-bottom: 14px;
     }
-    #iranian-ratios-lab .ir-language-bar { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+    #iranian-ratios-lab .ir-toolbar {
+      direction: ltr;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-left: 2px;
+    }
+    #iranian-ratios-lab .ir-switch {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    #iranian-ratios-lab .ir-switch-track {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      width: 66px;
+      height: 32px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--line) 45%, transparent);
+      overflow: hidden;
+    }
+    #iranian-ratios-lab .ir-theme-switch .ir-switch-track { width: 58px; }
+    #iranian-ratios-lab .ir-switch-label {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      min-width: 0;
+      font-size: 12px;
+      line-height: 1;
+    }
+    #iranian-ratios-lab .ir-theme-switch .ir-switch-label { font-size: 15px; }
+    #iranian-ratios-lab .ir-switch-thumb {
+      position: absolute;
+      z-index: 0;
+      inset: 3px auto 3px 3px;
+      width: calc(50% - 3px);
+      border-radius: 999px;
+      background: var(--paper);
+      box-shadow: 0 1px 4px color-mix(in srgb, var(--ink) 18%, transparent);
+      transition: transform 180ms ease;
+    }
+    #iranian-ratios-lab .ir-language-switch[data-state=&quot;en&quot;] .ir-switch-thumb,
+    #iranian-ratios-lab .ir-theme-switch[data-state=&quot;dark&quot;] .ir-switch-thumb { transform: translateX(100%); }
     #iranian-ratios-lab h2 { margin: 0; font-size: 20px; font-weight: 700; }
     #iranian-ratios-lab .ir-live { color: var(--accent); font-size: 16px; white-space: nowrap; }
     #iranian-ratios-lab .ir-stage {
@@ -1021,10 +1075,23 @@ html&gt;body{padding:0}&lt;/style&gt;
       #iranian-ratios-lab .ir-scale { margin-right: 48px; }
     }
   &lt;/style&gt;
+  &lt;div class=&quot;ir-toolbar&quot; aria-label=&quot;تنظیمات نمایش&quot;&gt;
+    &lt;button id=&quot;ir-language-toggle&quot; class=&quot;ir-switch ir-language-switch&quot; data-state=&quot;fa&quot; type=&quot;button&quot; aria-label=&quot;Switch to English&quot; aria-pressed=&quot;false&quot;&gt;
+      &lt;span class=&quot;ir-switch-track&quot; aria-hidden=&quot;true&quot;&gt;
+        &lt;span class=&quot;ir-switch-thumb&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;ir-switch-label&quot;&gt;فا&lt;/span&gt;
+        &lt;span class=&quot;ir-switch-label&quot;&gt;EN&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button id=&quot;ir-theme-toggle&quot; class=&quot;ir-switch ir-theme-switch&quot; data-state=&quot;light&quot; type=&quot;button&quot; aria-label=&quot;تغییر به حالت شب&quot; aria-pressed=&quot;false&quot;&gt;
+      &lt;span class=&quot;ir-switch-track&quot; aria-hidden=&quot;true&quot;&gt;
+        &lt;span class=&quot;ir-switch-thumb&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;ir-switch-label&quot;&gt;☀&lt;/span&gt;
+        &lt;span class=&quot;ir-switch-label&quot;&gt;☾&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
   &lt;section class=&quot;ir-shell&quot; aria-labelledby=&quot;ir-title&quot;&gt;
-    &lt;div class=&quot;ir-language-bar&quot;&gt;
-      &lt;button id=&quot;ir-language-toggle&quot; class=&quot;btn btn-ghost&quot; type=&quot;button&quot; aria-label=&quot;Switch to English&quot;&gt;EN&lt;/button&gt;
-    &lt;/div&gt;
     &lt;header class=&quot;ir-head&quot;&gt;
       &lt;h2 id=&quot;ir-title&quot;&gt;ترسیم زمین‌های ایرانی&lt;/h2&gt;
       &lt;div id=&quot;ir-land-live&quot; class=&quot;ir-live&quot; aria-live=&quot;polite&quot;&gt;زمین ۱۲&lt;/div&gt;
@@ -1108,6 +1175,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;iranian-ratios-lab&#x27;);
       const languageToggle = root.querySelector(&#x27;#ir-language-toggle&#x27;);
+      const themeToggle = root.querySelector(&#x27;#ir-theme-toggle&#x27;);
       const slider = root.querySelector(&#x27;#ir-slider&#x27;);
       const karbandiSlider = root.querySelector(&#x27;#ir-karbandi-slider&#x27;);
       const karbandiValue = root.querySelector(&#x27;#ir-karbandi-value&#x27;);
@@ -1122,7 +1190,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const ratioValue = root.querySelector(&#x27;#ir-ratio-value&#x27;);
       const copy = {
         fa: {
-          dir: &#x27;rtl&#x27;, locale: &#x27;fa-IR&#x27;, toggle: &#x27;EN&#x27;, toggleLabel: &#x27;Switch to English&#x27;,
+          dir: &#x27;rtl&#x27;, locale: &#x27;fa-IR&#x27;, toggle: &#x27;EN&#x27;, toggleLabel: &#x27;Switch to English&#x27;, toolbarLabel: &#x27;تنظیمات نمایش&#x27;, themeLight: &#x27;تغییر به حالت روز&#x27;, themeDark: &#x27;تغییر به حالت شب&#x27;,
           title: &#x27;ترسیم زمین‌های ایرانی&#x27;, landLive: n =&gt; `زمین ${n}`,
           landSvgTitle: &#x27;هندسهٔ زمین ایرانی&#x27;, landSvgDesc: &#x27;مستطیلی با طول ثابت، عرض متغیر و زاویه‌ای میان عرض و قطر.&#x27;,
           landSlider: &#x27;شمارهٔ زمین&#x27;, karbandiSlider: &#x27;اضلاع کاربندی&#x27;, rotationDivisor: &#x27;ضریب چرخش&#x27;, angle: &#x27;زاویه&#x27;, ratio: &#x27;عرض ÷ طول&#x27;,
@@ -1132,7 +1200,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           length: &#x27;طول&#x27;, width: &#x27;عرض&#x27;, diagonal: &#x27;قطر&#x27;
         },
         en: {
-          dir: &#x27;ltr&#x27;, locale: &#x27;en-US&#x27;, toggle: &#x27;FA&#x27;, toggleLabel: &#x27;Switch to Persian&#x27;,
+          dir: &#x27;ltr&#x27;, locale: &#x27;en-US&#x27;, toggle: &#x27;فا&#x27;, toggleLabel: &#x27;Switch to Persian&#x27;, toolbarLabel: &#x27;Display settings&#x27;, themeLight: &#x27;Switch to light mode&#x27;, themeDark: &#x27;Switch to dark mode&#x27;,
           title: &#x27;Iranian Proportion Plots&#x27;, landLive: n =&gt; `Plot ${n}`,
           landSvgTitle: &#x27;Iranian plot geometry&#x27;, landSvgDesc: &#x27;A rectangle with a fixed length, variable width, and an angle between the width and diagonal.&#x27;,
           landSlider: &#x27;Plot number&#x27;, karbandiSlider: &#x27;Karbandi sides&#x27;, rotationDivisor: &#x27;Rotation divisor&#x27;, angle: &#x27;Angle&#x27;, ratio: &#x27;Width ÷ length&#x27;,
@@ -1143,6 +1211,17 @@ html&gt;body{padding:0}&lt;/style&gt;
         }
       };
       let language = &#x27;fa&#x27;;
+      const systemTheme = window.matchMedia(&#x27;(prefers-color-scheme: dark)&#x27;);
+      let theme = systemTheme.matches ? &#x27;dark&#x27; : &#x27;light&#x27;;
+      let themeIsManual = false;
+      function applyTheme(nextTheme) {
+        theme = nextTheme;
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        themeToggle.dataset.state = theme;
+        themeToggle.setAttribute(&#x27;aria-pressed&#x27;, theme === &#x27;dark&#x27; ? &#x27;true&#x27; : &#x27;false&#x27;);
+        themeToggle.setAttribute(&#x27;aria-label&#x27;, theme === &#x27;dark&#x27; ? copy[language].themeLight : copy[language].themeDark);
+      }
       const formatInteger = value =&gt; new Intl.NumberFormat(copy[language].locale).format(value);
       const formatAngle = value =&gt; new Intl.NumberFormat(copy[language].locale, { maximumFractionDigits: 3 }).format(value);
       const formatRatio = value =&gt; new Intl.NumberFormat(copy[language].locale, { maximumFractionDigits: 3, minimumFractionDigits: 3 }).format(value);
@@ -1302,8 +1381,11 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.lang = language;
         root.dir = t.dir;
         root.querySelector(&#x27;.ir-shell&#x27;).dir = t.dir;
-        languageToggle.textContent = t.toggle;
+        languageToggle.dataset.state = language;
+        languageToggle.setAttribute(&#x27;aria-pressed&#x27;, language === &#x27;en&#x27; ? &#x27;true&#x27; : &#x27;false&#x27;);
         languageToggle.setAttribute(&#x27;aria-label&#x27;, t.toggleLabel);
+        root.querySelector(&#x27;.ir-toolbar&#x27;).setAttribute(&#x27;aria-label&#x27;, t.toolbarLabel);
+        themeToggle.setAttribute(&#x27;aria-label&#x27;, theme === &#x27;dark&#x27; ? t.themeLight : t.themeDark);
         root.querySelector(&#x27;#ir-title&#x27;).textContent = t.title;
         root.querySelector(&#x27;#ir-svg-title&#x27;).textContent = t.landSvgTitle;
         root.querySelector(&#x27;#ir-svg-desc&#x27;).textContent = t.landSvgDesc;
@@ -1336,6 +1418,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       rotationDivisorSlider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
       outputOptions.addEventListener(&#x27;change&#x27;, () =&gt; draw(Number(slider.value)));
       languageToggle.addEventListener(&#x27;click&#x27;, () =&gt; applyLanguage(language === &#x27;fa&#x27; ? &#x27;en&#x27; : &#x27;fa&#x27;));
+      themeToggle.addEventListener(&#x27;click&#x27;, () =&gt; {
+        themeIsManual = true;
+        applyTheme(theme === &#x27;dark&#x27; ? &#x27;light&#x27; : &#x27;dark&#x27;);
+      });
+      systemTheme.addEventListener(&#x27;change&#x27;, event =&gt; {
+        if (!themeIsManual) applyTheme(event.matches ? &#x27;dark&#x27; : &#x27;light&#x27;);
+      });
+      applyTheme(theme);
       applyLanguage(&#x27;fa&#x27;);
     })();
   &lt;/script&gt;
