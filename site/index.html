@@ -1022,6 +1022,46 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iranian-ratios-lab .ir-theme-switch[data-state=&quot;dark&quot;] .ir-switch-thumb { transform: translateX(100%); }
     #iranian-ratios-lab h2 { margin: 0; font-size: 20px; font-weight: 700; }
     #iranian-ratios-lab .ir-live { color: var(--accent); font-size: 16px; white-space: nowrap; }
+    #iranian-ratios-lab .ir-download {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    #iranian-ratios-lab .ir-download:hover { background: color-mix(in srgb, var(--line) 24%, transparent); }
+    #iranian-ratios-lab .ir-download:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    #iranian-ratios-lab .ir-download-icon {
+      position: relative;
+      width: 15px;
+      height: 17px;
+      border-bottom: 1.7px solid currentColor;
+    }
+    #iranian-ratios-lab .ir-download-icon::before {
+      content: &#x27;&#x27;;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1.7px;
+      height: 11px;
+      background: currentColor;
+      transform: translateX(-50%);
+    }
+    #iranian-ratios-lab .ir-download-icon::after {
+      content: &#x27;&#x27;;
+      position: absolute;
+      left: 50%;
+      top: 6px;
+      width: 7px;
+      height: 7px;
+      border-right: 1.7px solid currentColor;
+      border-bottom: 1.7px solid currentColor;
+      transform: translateX(-50%) rotate(45deg);
+    }
     #iranian-ratios-lab .ir-stage {
       display: grid;
       place-items: center;
@@ -1136,7 +1176,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;section class=&quot;ir-shell&quot; aria-labelledby=&quot;ir-title&quot;&gt;
     &lt;header class=&quot;ir-head&quot;&gt;
       &lt;h2 id=&quot;ir-title&quot;&gt;ترسیم زمین‌های ایرانی&lt;/h2&gt;
-      &lt;div id=&quot;ir-land-live&quot; class=&quot;ir-live&quot; aria-live=&quot;polite&quot;&gt;زمین ۱۲&lt;/div&gt;
+      &lt;button class=&quot;ir-download&quot; type=&quot;button&quot; data-download-svg=&quot;ir-svg&quot; data-download-name=&quot;iranian-plot&quot; aria-label=&quot;دانلود تصویر PNG ترسیم زمین ایرانی&quot;&gt;&lt;span class=&quot;ir-download-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;
     &lt;/header&gt;
     &lt;div class=&quot;ir-stage&quot;&gt;
       &lt;svg id=&quot;ir-svg&quot; viewBox=&quot;-280 0 990 430&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-svg-title ir-svg-desc&quot;&gt;
@@ -1162,6 +1202,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;section class=&quot;ir-shell ir-karbandi&quot; aria-labelledby=&quot;ir-karbandi-title&quot;&gt;
     &lt;header class=&quot;ir-head&quot;&gt;
       &lt;h2 id=&quot;ir-karbandi-title&quot;&gt;ترسیم کاربندی&lt;/h2&gt;
+      &lt;button class=&quot;ir-download&quot; type=&quot;button&quot; data-download-svg=&quot;ir-karbandi-svg&quot; data-download-name=&quot;karbandi-drawing&quot; aria-label=&quot;دانلود تصویر PNG ترسیم کاربندی&quot;&gt;&lt;span class=&quot;ir-download-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;
     &lt;/header&gt;
     &lt;div class=&quot;ir-stage&quot;&gt;
       &lt;svg id=&quot;ir-karbandi-svg&quot; viewBox=&quot;-280 -200 990 950&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-karbandi-svg-title ir-karbandi-svg-desc&quot;&gt;
@@ -1190,6 +1231,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;section class=&quot;ir-shell ir-karbandi ir-output&quot; aria-labelledby=&quot;ir-output-title&quot;&gt;
     &lt;header class=&quot;ir-head&quot;&gt;
       &lt;h2 id=&quot;ir-output-title&quot;&gt;خروجی&lt;/h2&gt;
+      &lt;button class=&quot;ir-download&quot; type=&quot;button&quot; data-download-svg=&quot;ir-output-svg&quot; data-download-name=&quot;karbandi-output&quot; aria-label=&quot;دانلود تصویر PNG خروجی&quot;&gt;&lt;span class=&quot;ir-download-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;
     &lt;/header&gt;
     &lt;div class=&quot;ir-stage&quot;&gt;
       &lt;svg id=&quot;ir-output-svg&quot; viewBox=&quot;-280 0 990 430&quot; role=&quot;img&quot; aria-labelledby=&quot;ir-output-svg-title ir-output-svg-desc&quot;&gt;
@@ -1231,7 +1273,6 @@ html&gt;body{padding:0}&lt;/style&gt;
       const karbandiDrawing = root.querySelector(&#x27;#ir-karbandi-drawing&#x27;);
       const outputDrawing = root.querySelector(&#x27;#ir-output-drawing&#x27;);
       const outputOptions = root.querySelector(&#x27;#ir-output-options&#x27;);
-      const landLive = root.querySelector(&#x27;#ir-land-live&#x27;);
       const landNumber = root.querySelector(&#x27;#ir-land-number&#x27;);
       const angleValue = root.querySelector(&#x27;#ir-angle-value&#x27;);
       const ratioValue = root.querySelector(&#x27;#ir-ratio-value&#x27;);
@@ -1240,6 +1281,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           dir: &#x27;rtl&#x27;, locale: &#x27;fa-IR&#x27;, toggle: &#x27;EN&#x27;, toggleLabel: &#x27;Switch to English&#x27;, toolbarLabel: &#x27;تنظیمات نمایش&#x27;, themeLight: &#x27;تغییر به حالت روز&#x27;, themeDark: &#x27;تغییر به حالت شب&#x27;,
           pageTitle: &#x27;ترسیم کاربندی با تناسبات ایرانی&#x27;, footer: &#x27;© حمید ابهری - ۱۴۰۵&#x27;,
           title: &#x27;ترسیم زمین‌های ایرانی&#x27;, landLive: n =&gt; `زمین ${n}`,
+          downloads: [&#x27;دانلود تصویر PNG ترسیم زمین ایرانی&#x27;, &#x27;دانلود تصویر PNG ترسیم کاربندی&#x27;, &#x27;دانلود تصویر PNG خروجی&#x27;],
           landSvgTitle: &#x27;هندسهٔ زمین ایرانی&#x27;, landSvgDesc: &#x27;مستطیلی با طول ثابت، عرض متغیر و زاویه‌ای میان عرض و قطر.&#x27;,
           landSlider: &#x27;شمارهٔ زمین&#x27;, karbandiSlider: &#x27;اضلاع کاربندی&#x27;, rotationDivisor: &#x27;ضریب چرخش&#x27;, angle: &#x27;زاویه&#x27;, ratio: &#x27;عرض ÷ طول&#x27;,
           karbandiTitle: &#x27;ترسیم کاربندی&#x27;, karbandiSvgTitle: &#x27;زمین کاربندی&#x27;, karbandiSvgDesc: &#x27;زمین طوسی با کمان و شعاع‌ها، همراه با زمینی مشکی و دو برابر بزرگ‌تر که مرکز آن بر مرکز کمان منطبق است.&#x27;,
@@ -1251,6 +1293,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           dir: &#x27;ltr&#x27;, locale: &#x27;en-US&#x27;, toggle: &#x27;فا&#x27;, toggleLabel: &#x27;Switch to Persian&#x27;, toolbarLabel: &#x27;Display settings&#x27;, themeLight: &#x27;Switch to light mode&#x27;, themeDark: &#x27;Switch to dark mode&#x27;,
           pageTitle: &#x27;Drawing Karbandi with Iranian Proportions&#x27;, footer: &#x27;© Hamid Abhari - 2026&#x27;,
           title: &#x27;Iranian Proportion Plots&#x27;, landLive: n =&gt; `Plot ${n}`,
+          downloads: [&#x27;Download Iranian plot as PNG&#x27;, &#x27;Download Karbandi drawing as PNG&#x27;, &#x27;Download output as PNG&#x27;],
           landSvgTitle: &#x27;Iranian plot geometry&#x27;, landSvgDesc: &#x27;A rectangle with a fixed length, variable width, and an angle between the width and diagonal.&#x27;,
           landSlider: &#x27;Plot number&#x27;, karbandiSlider: &#x27;Karbandi sides&#x27;, rotationDivisor: &#x27;Rotation divisor&#x27;, angle: &#x27;Angle&#x27;, ratio: &#x27;Width ÷ length&#x27;,
           karbandiTitle: &#x27;Karbandi Drawing&#x27;, karbandiSvgTitle: &#x27;Karbandi plot&#x27;, karbandiSvgDesc: &#x27;The gray plot with its arc and radial lines, plus a black plot twice its size whose center coincides with the arc center.&#x27;,
@@ -1289,6 +1332,46 @@ html&gt;body{padding:0}&lt;/style&gt;
         const height = box.height + padding * 2;
         svg.setAttribute(&#x27;viewBox&#x27;, `${minX} ${minY} ${width} ${height}`);
         svg.style.aspectRatio = `${width} / ${height}`;
+      };
+      const downloadPng = svg =&gt; {
+        const clone = svg.cloneNode(true);
+        clone.setAttribute(&#x27;xmlns&#x27;, ns);
+        clone.removeAttribute(&#x27;style&#x27;);
+        const originals = [svg, ...svg.querySelectorAll(&#x27;*&#x27;)];
+        const copies = [clone, ...clone.querySelectorAll(&#x27;*&#x27;)];
+        const properties = [&#x27;fill&#x27;, &#x27;stroke&#x27;, &#x27;stroke-width&#x27;, &#x27;stroke-dasharray&#x27;, &#x27;stroke-linecap&#x27;, &#x27;stroke-linejoin&#x27;, &#x27;font-family&#x27;, &#x27;font-size&#x27;, &#x27;font-weight&#x27;];
+        originals.forEach((node, index) =&gt; {
+          const computed = getComputedStyle(node);
+          properties.forEach(property =&gt; copies[index].style.setProperty(property, computed.getPropertyValue(property)));
+        });
+        const viewBox = svg.viewBox.baseVal;
+        const background = el(&#x27;rect&#x27;, {
+          x:viewBox.x,
+          y:viewBox.y,
+          width:viewBox.width,
+          height:viewBox.height,
+          fill:getComputedStyle(svg.closest(&#x27;.ir-shell&#x27;)).backgroundColor
+        });
+        clone.insertBefore(background, clone.firstChild);
+        const scale = 2;
+        const canvas = document.createElement(&#x27;canvas&#x27;);
+        canvas.width = Math.max(1, Math.round(viewBox.width * scale));
+        canvas.height = Math.max(1, Math.round(viewBox.height * scale));
+        const context = canvas.getContext(&#x27;2d&#x27;);
+        const image = new Image();
+        const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(clone)], {type:&#x27;image/svg+xml;charset=utf-8&#x27;}));
+        image.onload = () =&gt; {
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          URL.revokeObjectURL(url);
+          canvas.toBlob(blob =&gt; {
+            const link = document.createElement(&#x27;a&#x27;);
+            link.href = URL.createObjectURL(blob);
+            link.download = `${svg.dataset.downloadName || &#x27;drawing&#x27;}.png`;
+            link.click();
+            setTimeout(() =&gt; URL.revokeObjectURL(link.href), 1000);
+          }, &#x27;image/png&#x27;);
+        };
+        image.src = url;
       };
       function draw(n) {
         const t = copy[language];
@@ -1427,7 +1510,6 @@ html&gt;body{padding:0}&lt;/style&gt;
           mirroredXY.setAttribute(&#x27;transform&#x27;, `matrix(-1 0 0 -1 ${2*x} ${2*bottom})`);
           outputDrawing.append(mirroredXY);
         }
-        landLive.textContent = t.landLive(formatInteger(n));
         landNumber.textContent = formatInteger(n);
         angleValue.textContent = `${formatAngle(theta)}°`;
         ratioValue.textContent = formatRatio(ratio);
@@ -1463,6 +1545,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.querySelector(&#x27;#ir-output-quarter-label&#x27;).textContent = t.outputQuarter;
         root.querySelector(&#x27;#ir-output-half-label&#x27;).textContent = t.outputHalf;
         root.querySelector(&#x27;#ir-output-full-label&#x27;).textContent = t.outputFull;
+        root.querySelectorAll(&#x27;.ir-download&#x27;).forEach((button, index) =&gt; button.setAttribute(&#x27;aria-label&#x27;, t.downloads[index]));
         root.querySelector(&#x27;label[for=&quot;ir-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.landSlider}: `;
         root.querySelector(&#x27;label[for=&quot;ir-karbandi-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.karbandiSlider}: `;
         root.querySelector(&#x27;label[for=&quot;ir-rotation-divisor-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.rotationDivisor}: `;
@@ -1481,6 +1564,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       karbandiSlider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
       rotationDivisorSlider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
       outputOptions.addEventListener(&#x27;change&#x27;, () =&gt; draw(Number(slider.value)));
+      root.querySelectorAll(&#x27;.ir-download&#x27;).forEach(button =&gt; {
+        const svg = root.querySelector(`#${button.dataset.downloadSvg}`);
+        svg.dataset.downloadName = button.dataset.downloadName;
+        button.addEventListener(&#x27;click&#x27;, () =&gt; downloadPng(svg));
+      });
       languageToggle.addEventListener(&#x27;click&#x27;, () =&gt; applyLanguage(language === &#x27;fa&#x27; ? &#x27;en&#x27; : &#x27;fa&#x27;));
       themeToggle.addEventListener(&#x27;click&#x27;, () =&gt; {
         themeIsManual = true;
