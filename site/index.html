@@ -1039,13 +1039,21 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iranian-ratios-lab .ir-angle-text { fill: var(--accent); font-size: 17px; font-weight: 500; }
     #iranian-ratios-lab .ir-controls { padding-top: 18px; }
     #iranian-ratios-lab .ir-control-group + .ir-control-group { margin-top: 18px; }
-    #iranian-ratios-lab .ir-control-row { display: flex; align-items: center; gap: 14px; }
+    #iranian-ratios-lab .ir-control-group {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      column-gap: 14px;
+      align-items: center;
+    }
+    #iranian-ratios-lab .ir-control-row { display: contents; }
     #iranian-ratios-lab label { font-size: 14px; color: var(--muted); white-space: nowrap; }
     #iranian-ratios-lab input[type=&quot;range&quot;] { width: 100%; accent-color: var(--accent); cursor: pointer; }
     #iranian-ratios-lab .ir-scale {
       display: flex;
       justify-content: space-between;
-      margin: 7px 52px 0 0;
+      grid-column: 2;
+      margin: 7px 0 0;
+      padding-inline: 8px;
       color: var(--muted);
       font-size: 11px;
     }
@@ -1072,7 +1080,6 @@ html&gt;body{padding:0}&lt;/style&gt;
       #iranian-ratios-lab svg { height: 320px; }
       #iranian-ratios-lab .ir-readout { gap: 10px; font-size: 12px; }
       #iranian-ratios-lab .ir-readout span + span { padding-right: 10px; }
-      #iranian-ratios-lab .ir-scale { margin-right: 48px; }
     }
   &lt;/style&gt;
   &lt;div class=&quot;ir-toolbar&quot; aria-label=&quot;تنظیمات نمایش&quot;&gt;
@@ -1106,7 +1113,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;ir-controls&quot;&gt;
       &lt;div class=&quot;ir-control-group&quot;&gt;
         &lt;div class=&quot;ir-control-row&quot;&gt;
-          &lt;label for=&quot;ir-slider&quot;&gt;شمارهٔ زمین&lt;/label&gt;
+          &lt;label for=&quot;ir-slider&quot;&gt;شمارهٔ زمین: &lt;b id=&quot;ir-land-number&quot;&gt;۱۲&lt;/b&gt;&lt;/label&gt;
           &lt;input id=&quot;ir-slider&quot; type=&quot;range&quot; min=&quot;8&quot; max=&quot;20&quot; step=&quot;1&quot; value=&quot;12&quot; aria-valuemin=&quot;8&quot; aria-valuemax=&quot;20&quot; aria-valuenow=&quot;12&quot;&gt;
         &lt;/div&gt;
         &lt;div id=&quot;ir-land-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۰&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۴&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;span&gt;۱۸&lt;/span&gt;&lt;span&gt;۲۰&lt;/span&gt;&lt;/div&gt;
@@ -1186,6 +1193,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const outputDrawing = root.querySelector(&#x27;#ir-output-drawing&#x27;);
       const outputOptions = root.querySelector(&#x27;#ir-output-options&#x27;);
       const landLive = root.querySelector(&#x27;#ir-land-live&#x27;);
+      const landNumber = root.querySelector(&#x27;#ir-land-number&#x27;);
       const angleValue = root.querySelector(&#x27;#ir-angle-value&#x27;);
       const ratioValue = root.querySelector(&#x27;#ir-ratio-value&#x27;);
       const copy = {
@@ -1370,6 +1378,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           outputDrawing.append(mirroredXY);
         }
         landLive.textContent = t.landLive(formatInteger(n));
+        landNumber.textContent = formatInteger(n);
         angleValue.textContent = `${formatAngle(theta)}°`;
         ratioValue.textContent = formatRatio(ratio);
         slider.setAttribute(&#x27;aria-valuenow&#x27;, n);
@@ -1399,7 +1408,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.querySelector(&#x27;#ir-output-quarter-label&#x27;).textContent = t.outputQuarter;
         root.querySelector(&#x27;#ir-output-half-label&#x27;).textContent = t.outputHalf;
         root.querySelector(&#x27;#ir-output-full-label&#x27;).textContent = t.outputFull;
-        root.querySelector(&#x27;label[for=&quot;ir-slider&quot;]&#x27;).textContent = t.landSlider;
+        root.querySelector(&#x27;label[for=&quot;ir-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.landSlider}: `;
         root.querySelector(&#x27;label[for=&quot;ir-karbandi-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.karbandiSlider}: `;
         root.querySelector(&#x27;label[for=&quot;ir-rotation-divisor-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.rotationDivisor}: `;
         const readouts = root.querySelectorAll(&#x27;.ir-readout&#x27;);
