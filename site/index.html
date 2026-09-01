@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Iranian Ratios Bilingual</title>
-<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+<style>:root{color-scheme:light dark;background:light-dark(#f3efdf,#1d211e)}html,body{margin:0;background:inherit}body{box-sizing:border-box;padding:0}iframe{display:block;width:100%;height:100vh;margin:0;border:0;background:inherit}</style>
 </head>
 <body>
 <iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Iranian Ratios Bilingual" srcdoc="&lt;!doctype html&gt;
@@ -1009,8 +1009,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       background: var(--paper);
       font-family: Tahoma, Arial, sans-serif;
       width: 100%;
-      max-width: 1500px;
+      max-width: none;
+      min-height: 100vh;
       margin: 0 auto;
+      box-shadow: 0 0 0 100vmax var(--paper);
       color-scheme: light;
     }
     #iranian-ratios-lab[data-theme=&quot;dark&quot;] { color-scheme: dark; }
@@ -1018,6 +1020,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iranian-ratios-lab[lang=&quot;fa&quot;] { font-family: &quot;Vazirmatn&quot;, Tahoma, Arial, sans-serif; }
     #iranian-ratios-lab[lang=&quot;fa&quot;] svg text { font-family: &quot;Vazirmatn&quot;, Tahoma, Arial, sans-serif; }
     #iranian-ratios-lab .ir-shell {
+      width: min(100%, 1500px);
+      margin: 0 auto;
       background: transparent;
       border: 0;
       border-radius: 0;
@@ -1034,7 +1038,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       position: sticky;
       z-index: 20;
       top: 0;
-      margin: 0 4.5vw;
+      width: min(calc(100% - 9vw), 1500px);
+      margin: 0 auto;
       border-bottom: 1px solid var(--line);
       background: var(--paper);
     }
@@ -1336,7 +1341,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       stroke-linejoin: round;
     }
     #iranian-ratios-lab .ir-footer {
-      margin: 0 4.5vw;
+      width: min(calc(100% - 9vw), 1500px);
+      margin: 0 auto;
       padding: 30px 0 14px;
       color: color-mix(in srgb, var(--muted) 68%, transparent);
       text-align: center;
@@ -1346,10 +1352,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       #iranian-ratios-lab .ir-shell { padding: 20px 18px 0; border-radius: 0; }
       #iranian-ratios-lab .ir-head { align-items: center; }
       #iranian-ratios-lab h2 { font-size: 17px; }
-      #iranian-ratios-lab .ir-toolbar { margin: 0 18px; }
+      #iranian-ratios-lab .ir-toolbar { width: calc(100% - 36px); margin: 0 auto; }
       #iranian-ratios-lab .ir-page-title { font-size: 12px; }
       #iranian-ratios-lab .ir-toolbar-inner { gap: 10px; min-height: 66px; }
-      #iranian-ratios-lab .ir-footer { margin: 0 18px; }
+      #iranian-ratios-lab .ir-footer { width: calc(100% - 36px); margin: 0 auto; }
       #iranian-ratios-lab .ir-stage { padding: 12px 0; }
       #iranian-ratios-lab .ir-readout { gap: 10px; font-size: 12px; }
       #iranian-ratios-lab .ir-readout span + span { padding-right: 10px; }
