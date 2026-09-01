@@ -994,16 +994,22 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;div id=&quot;iranian-ratios-lab&quot; lang=&quot;fa&quot; dir=&quot;rtl&quot;&gt;
   &lt;style&gt;
     #iranian-ratios-lab {
-      --ink: light-dark(#22201c, #f4eee3);
-      --muted: light-dark(#6f695e, #b8b0a3);
-      --line: light-dark(#cfc3af, #60594f);
-      --paper: light-dark(#f8f1e4, #211f1c);
-      --accent: light-dark(#a33b2f, #e47967);
+      --ink: light-dark(#19261f, #f0eee6);
+      --muted: light-dark(#667068, #aaa99f);
+      --line: light-dark(#c9c6b8, #575851);
+      --paper: light-dark(#f3efdf, #1d211e);
+      --diagram: light-dark(#e6e2d3, #292d29);
+      --red: light-dark(#cb4327, #e7654d);
+      --yellow: light-dark(#efb90b, #f0c53d);
+      --purple: light-dark(#4d438e, #8d82d4);
+      --green: light-dark(#3a9e58, #63bd7d);
+      --accent: var(--red);
       --gold: light-dark(#b9873e, #d7aa60);
       color: var(--ink);
+      background: var(--paper);
       font-family: Tahoma, Arial, sans-serif;
       width: 100%;
-      max-width: 1120px;
+      max-width: 1500px;
       margin: 0 auto;
       color-scheme: light;
     }
@@ -1012,11 +1018,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iranian-ratios-lab[lang=&quot;fa&quot;] { font-family: &quot;Vazirmatn&quot;, Tahoma, Arial, sans-serif; }
     #iranian-ratios-lab[lang=&quot;fa&quot;] svg text { font-family: &quot;Vazirmatn&quot;, Tahoma, Arial, sans-serif; }
     #iranian-ratios-lab .ir-shell {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 20px;
-      overflow: hidden;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 34px 4.5vw 0;
     }
     #iranian-ratios-lab .ir-head {
       display: flex;
@@ -1029,28 +1034,28 @@ html&gt;body{padding:0}&lt;/style&gt;
       position: sticky;
       z-index: 20;
       top: 0;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-bottom: 14px;
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
-      background: color-mix(in srgb, var(--paper) 76%, transparent);
-      backdrop-filter: blur(18px) saturate(145%);
-      -webkit-backdrop-filter: blur(18px) saturate(145%);
+      margin: 0 4.5vw;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
     }
     #iranian-ratios-lab .ir-toolbar-inner {
+      direction: rtl;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 18px;
-      width: min(100% - 28px, 1120px);
-      min-height: 58px;
-      margin: 0 auto;
+      width: 100%;
+      min-height: 78px;
     }
     #iranian-ratios-lab .ir-page-title {
       margin: 0;
       color: var(--ink);
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    #iranian-ratios-lab[lang=&quot;en&quot;] .ir-page-title {
+      direction: ltr;
+      text-align: right;
     }
     #iranian-ratios-lab .ir-toolbar-switches {
       direction: ltr;
@@ -1111,7 +1116,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       height: 34px;
       place-items: center;
       border: 1px solid var(--line);
-      border-radius: 9px;
+      border-radius: 0;
       background: transparent;
       color: var(--ink);
       cursor: pointer;
@@ -1160,8 +1165,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       place-items: center;
       height: 560px;
       min-height: 520px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
+      border: 0;
+      border-radius: 0;
+      background: var(--diagram);
       padding: 18px;
       overflow: hidden;
     }
@@ -1196,8 +1202,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iranian-ratios-lab .ir-diagonal { stroke: var(--accent); stroke-width: 2; }
     #iranian-ratios-lab .ir-angle { fill: none; stroke: var(--accent); stroke-width: 2; }
     #iranian-ratios-lab .ir-dim { stroke: var(--muted); stroke-width: 1; }
-    #iranian-ratios-lab .ir-dim-text { fill: var(--muted); font-size: 17px; }
-    #iranian-ratios-lab .ir-angle-text { fill: var(--accent); font-size: 17px; font-weight: 500; }
+    #iranian-ratios-lab .ir-dim-text { fill: var(--muted); font-size: 12px; }
+    #iranian-ratios-lab .ir-angle-text { fill: var(--accent); font-size: 13px; font-weight: 500; }
     #iranian-ratios-lab .ir-controls-panel {
       grid-area: controls;
       direction: rtl;
@@ -1206,27 +1212,30 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #iranian-ratios-lab[lang=&quot;en&quot;] .ir-controls-panel { direction: ltr; }
     #iranian-ratios-lab .ir-control-section {
-      border-bottom: 1px solid var(--line);
-      padding: 4px 0 18px;
+      --slider-color: var(--red);
+      border: 1px solid var(--line);
+      padding: 12px 14px 10px;
+      background: color-mix(in srgb, var(--paper) 78%, transparent);
     }
-    #iranian-ratios-lab .ir-control-section:last-child { border-bottom: 0; }
+    #iranian-ratios-lab .ir-control-section:nth-child(2) { --slider-color: var(--yellow); }
+    #iranian-ratios-lab .ir-control-section:nth-child(3) { --slider-color: var(--purple); }
     #iranian-ratios-lab .ir-control-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     #iranian-ratios-lab .ir-control-actions { display: flex; align-items: center; gap: 8px; }
     #iranian-ratios-lab .ir-layer-switch { position: relative; display: inline-flex; align-items: center; cursor: pointer; }
     #iranian-ratios-lab .ir-layer-switch input { position: absolute; opacity: 0; pointer-events: none; }
     #iranian-ratios-lab .ir-layer-switch-track {
       position: relative;
-      width: 42px;
-      height: 24px;
-      border: 1px solid var(--line);
+      width: 30px;
+      height: 17px;
+      border: 0;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--line) 48%, transparent);
+      background: color-mix(in srgb, var(--muted) 58%, transparent);
       transition: background 180ms ease;
     }
     #iranian-ratios-lab .ir-layer-switch-track::after {
@@ -1234,15 +1243,15 @@ html&gt;body{padding:0}&lt;/style&gt;
       position: absolute;
       top: 3px;
       left: 3px;
-      width: 16px;
-      height: 16px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: var(--paper);
       box-shadow: 0 1px 3px color-mix(in srgb, var(--ink) 20%, transparent);
       transition: transform 180ms ease;
     }
-    #iranian-ratios-lab .ir-layer-switch input:checked + .ir-layer-switch-track { background: var(--accent); }
-    #iranian-ratios-lab .ir-layer-switch input:checked + .ir-layer-switch-track::after { transform: translateX(18px); }
+    #iranian-ratios-lab .ir-layer-switch input:checked + .ir-layer-switch-track { background: var(--slider-color); }
+    #iranian-ratios-lab .ir-layer-switch input:checked + .ir-layer-switch-track::after { transform: translateX(13px); }
     #iranian-ratios-lab .ir-layer-switch input:focus-visible + .ir-layer-switch-track { outline: 2px solid var(--accent); outline-offset: 2px; }
     #iranian-ratios-lab .ir-controls { padding-top: 0; }
     #iranian-ratios-lab .ir-control-group + .ir-control-group { margin-top: 18px; }
@@ -1251,16 +1260,65 @@ html&gt;body{padding:0}&lt;/style&gt;
       grid-template-columns: minmax(0, 1fr);
     }
     #iranian-ratios-lab .ir-control-row { display: contents; }
-    #iranian-ratios-lab label { font-size: 14px; color: var(--muted); white-space: nowrap; }
-    #iranian-ratios-lab input[type=&quot;range&quot;] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+    #iranian-ratios-lab label { font-size: 12px; color: var(--ink); white-space: nowrap; }
+    #iranian-ratios-lab .ir-control-head &gt; label::before {
+      content: &#x27;&#x27;;
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-inline-end: 8px;
+      border-radius: 50%;
+      background: var(--slider-color);
+    }
+    #iranian-ratios-lab .ir-control-head &gt; label b {
+      display: inline-block;
+      min-width: 42px;
+      margin-inline-start: 7px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--slider-color);
+      color: light-dark(#fff, #171a17);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    #iranian-ratios-lab input[type=&quot;range&quot;] {
+      width: 100%;
+      height: 3px;
+      margin: 3px 0;
+      appearance: none;
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+      background: linear-gradient(to left, var(--slider-color) var(--progress, 0%), var(--line) var(--progress, 0%));
+    }
+    #iranian-ratios-lab[lang=&quot;en&quot;] input[type=&quot;range&quot;] { background: linear-gradient(to right, var(--slider-color) var(--progress, 0%), var(--line) var(--progress, 0%)); }
+    #iranian-ratios-lab input[type=&quot;range&quot;]::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 3px solid var(--paper);
+      border-radius: 50%;
+      background: var(--slider-color);
+      box-shadow: 0 0 0 1px var(--slider-color);
+    }
+    #iranian-ratios-lab input[type=&quot;range&quot;]::-moz-range-thumb {
+      width: 11px;
+      height: 11px;
+      border: 3px solid var(--paper);
+      border-radius: 50%;
+      background: var(--slider-color);
+    }
+    #iranian-ratios-lab input[type=&quot;range&quot;]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--ink); }
     #iranian-ratios-lab .ir-scale {
       display: flex;
       justify-content: space-between;
       grid-column: 1;
-      margin: 7px 0 0;
-      padding-inline: 8px;
+      margin: 5px 0 0;
+      padding: 0;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 9px;
     }
     #iranian-ratios-lab .ir-readout {
       display: flex;
@@ -1268,7 +1326,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       gap: 18px;
       margin-top: 14px;
       font-variant-numeric: tabular-nums;
-      font-size: 14px;
+      font-size: 10px;
     }
     #iranian-ratios-lab .ir-readout span + span { border-right: 1px solid var(--line); padding-right: 18px; }
     #iranian-ratios-lab .ir-poly-shape {
@@ -1278,17 +1336,20 @@ html&gt;body{padding:0}&lt;/style&gt;
       stroke-linejoin: round;
     }
     #iranian-ratios-lab .ir-footer {
-      padding: 30px 12px 14px;
+      margin: 0 4.5vw;
+      padding: 30px 0 14px;
       color: color-mix(in srgb, var(--muted) 68%, transparent);
       text-align: center;
-      font-size: 12px;
+      font-size: 10px;
     }
     @media (max-width: 520px) {
-      #iranian-ratios-lab .ir-shell { padding: 14px; border-radius: 14px; }
+      #iranian-ratios-lab .ir-shell { padding: 20px 18px 0; border-radius: 0; }
       #iranian-ratios-lab .ir-head { align-items: center; }
       #iranian-ratios-lab h2 { font-size: 17px; }
-      #iranian-ratios-lab .ir-page-title { font-size: 14px; }
-      #iranian-ratios-lab .ir-toolbar-inner { gap: 10px; min-height: 54px; }
+      #iranian-ratios-lab .ir-toolbar { margin: 0 18px; }
+      #iranian-ratios-lab .ir-page-title { font-size: 12px; }
+      #iranian-ratios-lab .ir-toolbar-inner { gap: 10px; min-height: 66px; }
+      #iranian-ratios-lab .ir-footer { margin: 0 18px; }
       #iranian-ratios-lab .ir-stage { padding: 12px 0; }
       #iranian-ratios-lab .ir-readout { gap: 10px; font-size: 12px; }
       #iranian-ratios-lab .ir-readout span + span { padding-right: 10px; }
@@ -1481,6 +1542,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         if (text) node.textContent = text;
         return node;
       };
+      const updateSliderProgress = input =&gt; {
+        const progress = (Number(input.value) - Number(input.min)) / (Number(input.max) - Number(input.min)) * 100;
+        input.style.setProperty(&#x27;--progress&#x27;, `${progress}%`);
+      };
       const fitAllSvgs = (padding = 28) =&gt; {
         const boxes = [drawing, karbandiDrawing, outputDrawing].map(group =&gt; group.getBBox());
         const minX = Math.min(...boxes.map(box =&gt; box.x)) - padding;
@@ -1530,7 +1595,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           y:viewBox.y,
           width:viewBox.width,
           height:viewBox.height,
-          fill:getComputedStyle(root.querySelector(&#x27;.ir-shell&#x27;)).backgroundColor
+          fill:getComputedStyle(root.querySelector(&#x27;.ir-stage&#x27;)).backgroundColor
         });
         clone.insertBefore(background, clone.firstChild);
         const scale = 2;
@@ -1697,6 +1762,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         ratioValue.textContent = formatRatio(ratio);
         slider.setAttribute(&#x27;aria-valuenow&#x27;, n);
         slider.setAttribute(&#x27;aria-valuetext&#x27;, t.landLive(formatInteger(n)));
+        [slider, karbandiSlider, rotationDivisorSlider].forEach(updateSliderProgress);
         syncLayers();
       }
       function applyLanguage(nextLanguage) {
