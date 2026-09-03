@@ -1223,7 +1223,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       background: color-mix(in srgb, var(--paper) 78%, transparent);
     }
     #iranian-ratios-lab .ir-control-section:nth-child(2) { --slider-color: var(--yellow); }
-    #iranian-ratios-lab .ir-control-section:nth-child(3) { --slider-color: var(--purple); }
+    #iranian-ratios-lab .ir-control-section:nth-child(3) { --slider-color: var(--green); }
+    #iranian-ratios-lab .ir-control-section:nth-child(4) { --slider-color: var(--gold); }
+    #iranian-ratios-lab .ir-control-section:nth-child(5) { --slider-color: var(--purple); }
     #iranian-ratios-lab .ir-control-head {
       display: flex;
       align-items: center;
@@ -1455,15 +1457,41 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div class=&quot;ir-control-head&quot;&gt;
             &lt;label for=&quot;ir-rotation-divisor-slider&quot;&gt;ضریب چرخش: &lt;b id=&quot;ir-rotation-divisor-value&quot;&gt;۱&lt;/b&gt;&lt;/label&gt;
             &lt;div class=&quot;ir-control-actions&quot;&gt;
-              &lt;label class=&quot;ir-layer-switch&quot; aria-label=&quot;نمایش خروجی کاربندی&quot;&gt;
-                &lt;input id=&quot;ir-output-visible&quot; type=&quot;checkbox&quot; role=&quot;switch&quot;&gt;
+              &lt;label class=&quot;ir-layer-switch&quot; aria-label=&quot;فعال‌سازی ضریب چرخش&quot;&gt;
+                &lt;input id=&quot;ir-rotation-divisor-enabled&quot; type=&quot;checkbox&quot; role=&quot;switch&quot;&gt;
                 &lt;span class=&quot;ir-layer-switch-track&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
               &lt;/label&gt;
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;div class=&quot;ir-control-group&quot;&gt;
-            &lt;input id=&quot;ir-rotation-divisor-slider&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;16&quot; step=&quot;1&quot; value=&quot;1&quot; aria-valuemin=&quot;1&quot; aria-valuemax=&quot;16&quot; aria-valuenow=&quot;1&quot;&gt;
-            &lt;div id=&quot;ir-rotation-divisor-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۱&lt;/span&gt;&lt;span&gt;۴&lt;/span&gt;&lt;span&gt;۸&lt;/span&gt;&lt;span&gt;۱۲&lt;/span&gt;&lt;span&gt;۱۶&lt;/span&gt;&lt;/div&gt;
+            &lt;input id=&quot;ir-rotation-divisor-slider&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;5&quot; step=&quot;1&quot; value=&quot;1&quot; aria-valuemin=&quot;1&quot; aria-valuemax=&quot;5&quot; aria-valuenow=&quot;1&quot;&gt;
+            &lt;div id=&quot;ir-rotation-divisor-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۱&lt;/span&gt;&lt;span&gt;۲&lt;/span&gt;&lt;span&gt;۳&lt;/span&gt;&lt;span&gt;۴&lt;/span&gt;&lt;span&gt;۵&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;ir-control-section&quot;&gt;
+          &lt;div class=&quot;ir-control-head&quot;&gt;
+            &lt;label for=&quot;ir-karbandi-template-slider&quot;&gt;قالب کاربندی: &lt;b id=&quot;ir-karbandi-template-value&quot;&gt;۰°&lt;/b&gt;&lt;/label&gt;
+            &lt;div class=&quot;ir-control-actions&quot;&gt;
+              &lt;label class=&quot;ir-layer-switch&quot; aria-label=&quot;فعال‌سازی قالب کاربندی&quot;&gt;
+                &lt;input id=&quot;ir-karbandi-template-enabled&quot; type=&quot;checkbox&quot; role=&quot;switch&quot;&gt;
+                &lt;span class=&quot;ir-layer-switch-track&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+              &lt;/label&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;ir-control-group&quot;&gt;
+            &lt;input id=&quot;ir-karbandi-template-slider&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;90&quot; step=&quot;1&quot; value=&quot;0&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;90&quot; aria-valuenow=&quot;0&quot;&gt;
+            &lt;div id=&quot;ir-karbandi-template-scale&quot; class=&quot;ir-scale&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;۰°&lt;/span&gt;&lt;span&gt;۳۰°&lt;/span&gt;&lt;span&gt;۶۰°&lt;/span&gt;&lt;span&gt;۹۰°&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;ir-control-section&quot;&gt;
+          &lt;div class=&quot;ir-control-head&quot;&gt;
+            &lt;label id=&quot;ir-output-options-title&quot;&gt;خروجی ترسیم&lt;/label&gt;
+            &lt;div class=&quot;ir-control-actions&quot;&gt;
+              &lt;label class=&quot;ir-layer-switch&quot; aria-label=&quot;نمایش خروجی کاربندی&quot;&gt;
+                &lt;input id=&quot;ir-output-visible&quot; type=&quot;checkbox&quot; role=&quot;switch&quot;&gt;
+                &lt;span class=&quot;ir-layer-switch-track&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+              &lt;/label&gt;
+            &lt;/div&gt;
           &lt;/div&gt;
           &lt;div id=&quot;ir-output-options&quot; class=&quot;viz-row&quot; role=&quot;radiogroup&quot; aria-label=&quot;نوع خروجی&quot;&gt;
             &lt;label class=&quot;form-check&quot;&gt;&lt;input class=&quot;form-check-input&quot; id=&quot;ir-output-quarter&quot; type=&quot;radio&quot; name=&quot;ir-output-mode&quot; value=&quot;quarter&quot; checked&gt;&lt;span class=&quot;form-check-label&quot; id=&quot;ir-output-quarter-label&quot;&gt;یک‌چهارم کاربندی&lt;/span&gt;&lt;/label&gt;
@@ -1485,6 +1513,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       const karbandiValue = root.querySelector(&#x27;#ir-karbandi-value&#x27;);
       const rotationDivisorSlider = root.querySelector(&#x27;#ir-rotation-divisor-slider&#x27;);
       const rotationDivisorValue = root.querySelector(&#x27;#ir-rotation-divisor-value&#x27;);
+      const rotationDivisorEnabled = root.querySelector(&#x27;#ir-rotation-divisor-enabled&#x27;);
+      const karbandiTemplateSlider = root.querySelector(&#x27;#ir-karbandi-template-slider&#x27;);
+      const karbandiTemplateValue = root.querySelector(&#x27;#ir-karbandi-template-value&#x27;);
+      const karbandiTemplateEnabled = root.querySelector(&#x27;#ir-karbandi-template-enabled&#x27;);
       const landVisible = root.querySelector(&#x27;#ir-land-visible&#x27;);
       const karbandiVisible = root.querySelector(&#x27;#ir-karbandi-visible&#x27;);
       const outputVisible = root.querySelector(&#x27;#ir-output-visible&#x27;);
@@ -1504,12 +1536,12 @@ html&gt;body{padding:0}&lt;/style&gt;
           pageTitle: &#x27;ترسیم کاربندی با تناسبات ایرانی&#x27;, footer: &#x27;© حمید ابهری - ۱۴۰۵&#x27;,
           title: &#x27;ترسیم زمین‌های ایرانی&#x27;, landLive: n =&gt; `زمین ${n}`,
           downloads: [&#x27;دانلود تصویر PNG ترسیم زمین ایرانی&#x27;, &#x27;دانلود تصویر PNG ترسیم کاربندی&#x27;, &#x27;دانلود تصویر PNG خروجی&#x27;],
-          visibility: [&#x27;نمایش ترسیم زمین ایرانی&#x27;, &#x27;نمایش ترسیم کاربندی&#x27;, &#x27;نمایش خروجی کاربندی&#x27;], controlsLabel: &#x27;کنترل لایه‌های ترسیم&#x27;,
+          visibility: [&#x27;نمایش ترسیم زمین ایرانی&#x27;, &#x27;نمایش ترسیم کاربندی&#x27;, &#x27;فعال‌سازی ضریب چرخش&#x27;, &#x27;فعال‌سازی قالب کاربندی&#x27;, &#x27;نمایش خروجی کاربندی&#x27;], controlsLabel: &#x27;کنترل لایه‌های ترسیم&#x27;,
           landSvgTitle: &#x27;هندسهٔ زمین ایرانی&#x27;, landSvgDesc: &#x27;مستطیلی با طول ثابت، عرض متغیر و زاویه‌ای میان عرض و قطر.&#x27;,
-          landSlider: &#x27;شمارهٔ زمین&#x27;, karbandiSlider: &#x27;اضلاع کاربندی&#x27;, rotationDivisor: &#x27;ضریب چرخش&#x27;, angle: &#x27;زاویه&#x27;, ratio: &#x27;عرض ÷ طول&#x27;,
-          karbandiTitle: &#x27;ترسیم کاربندی&#x27;, karbandiSvgTitle: &#x27;زمین کاربندی&#x27;, karbandiSvgDesc: &#x27;زمین طوسی با کمان و شعاع‌ها، همراه با زمینی مشکی و دو برابر بزرگ‌تر که مرکز آن بر مرکز کمان منطبق است.&#x27;,
+          landSlider: &#x27;شمارهٔ زمین&#x27;, karbandiSlider: &#x27;اضلاع کاربندی&#x27;, rotationDivisor: &#x27;ضریب چرخش&#x27;, karbandiTemplate: &#x27;قالب کاربندی&#x27;, finalSides: &#x27;تعداد نهایی اضلاع&#x27;, angle: &#x27;زاویه&#x27;, ratio: &#x27;عرض ÷ طول&#x27;,
+          karbandiTitle: &#x27;ترسیم کاربندی&#x27;, karbandiSvgTitle: &#x27;زمین کاربندی&#x27;, karbandiSvgDesc: &#x27;زمین طوسی با کمان و شعاع‌ها، همراه با ضلع‌های مشکی چرخیده پیرامون مرکز کمان.&#x27;,
           outputTitle: &#x27;خروجی&#x27;, outputSvgTitle: &#x27;خروجی کاربندی&#x27;, outputSvgDesc: &#x27;خطوط مشکی برش‌خورده همراه با کمان و شعاع‌های طوسی کاربندی.&#x27;,
-          outputOptions: &#x27;نوع خروجی&#x27;, outputQuarter: &#x27;یک‌چهارم کاربندی&#x27;, outputHalf: &#x27;نیم‌کار&#x27;, outputFull: &#x27;کاربندی کامل&#x27;,
+          outputOptions: &#x27;خروجی ترسیم&#x27;, outputQuarter: &#x27;یک‌چهارم کاربندی&#x27;, outputHalf: &#x27;نیم‌کار&#x27;, outputFull: &#x27;کاربندی کامل&#x27;,
           length: &#x27;طول&#x27;, width: &#x27;عرض&#x27;, diagonal: &#x27;قطر&#x27;
         },
         en: {
@@ -1517,12 +1549,12 @@ html&gt;body{padding:0}&lt;/style&gt;
           pageTitle: &#x27;Drawing Karbandi with Iranian Proportions&#x27;, footer: &#x27;© Hamid Abhari - 2026&#x27;,
           title: &#x27;Iranian Proportion Plots&#x27;, landLive: n =&gt; `Plot ${n}`,
           downloads: [&#x27;Download Iranian plot as PNG&#x27;, &#x27;Download Karbandi drawing as PNG&#x27;, &#x27;Download output as PNG&#x27;],
-          visibility: [&#x27;Show Iranian plot&#x27;, &#x27;Show Karbandi drawing&#x27;, &#x27;Show Karbandi output&#x27;], controlsLabel: &#x27;Drawing layer controls&#x27;,
+          visibility: [&#x27;Show Iranian plot&#x27;, &#x27;Show Karbandi drawing&#x27;, &#x27;Enable rotation multiplier&#x27;, &#x27;Enable Karbandi template&#x27;, &#x27;Show Karbandi output&#x27;], controlsLabel: &#x27;Drawing layer controls&#x27;,
           landSvgTitle: &#x27;Iranian plot geometry&#x27;, landSvgDesc: &#x27;A rectangle with a fixed length, variable width, and an angle between the width and diagonal.&#x27;,
-          landSlider: &#x27;Plot number&#x27;, karbandiSlider: &#x27;Karbandi sides&#x27;, rotationDivisor: &#x27;Rotation divisor&#x27;, angle: &#x27;Angle&#x27;, ratio: &#x27;Width ÷ length&#x27;,
-          karbandiTitle: &#x27;Karbandi Drawing&#x27;, karbandiSvgTitle: &#x27;Karbandi plot&#x27;, karbandiSvgDesc: &#x27;The gray plot with its arc and radial lines, plus a black plot twice its size whose center coincides with the arc center.&#x27;,
+          landSlider: &#x27;Plot number&#x27;, karbandiSlider: &#x27;Karbandi sides&#x27;, rotationDivisor: &#x27;Rotation multiplier&#x27;, karbandiTemplate: &#x27;Karbandi template&#x27;, finalSides: &#x27;Final side count&#x27;, angle: &#x27;Angle&#x27;, ratio: &#x27;Width ÷ length&#x27;,
+          karbandiTitle: &#x27;Karbandi Drawing&#x27;, karbandiSvgTitle: &#x27;Karbandi plot&#x27;, karbandiSvgDesc: &#x27;The gray plot with its arc and radial lines, plus black sides rotated around the arc center.&#x27;,
           outputTitle: &#x27;Output&#x27;, outputSvgTitle: &#x27;Karbandi output&#x27;, outputSvgDesc: &#x27;Trimmed black lines with the light-gray Karbandi arc and radial lines.&#x27;,
-          outputOptions: &#x27;Output type&#x27;, outputQuarter: &#x27;Quarter Karbandi&#x27;, outputHalf: &#x27;Half-work&#x27;, outputFull: &#x27;Full Karbandi&#x27;,
+          outputOptions: &#x27;Drawing output&#x27;, outputQuarter: &#x27;Quarter Karbandi&#x27;, outputHalf: &#x27;Half-work&#x27;, outputFull: &#x27;Full Karbandi&#x27;,
           length: &#x27;Length&#x27;, width: &#x27;Width&#x27;, diagonal: &#x27;Diagonal&#x27;
         }
       };
@@ -1664,14 +1696,6 @@ html&gt;body{padding:0}&lt;/style&gt;
         const outerArcX = x + circleR * Math.cos(theta * Math.PI / 180);
         const outerArcY = bottom - circleR * Math.sin(theta * Math.PI / 180);
         drawing.append(el(&#x27;path&#x27;, {d:`M ${x+circleR} ${bottom} A ${circleR} ${circleR} 0 0 0 ${outerArcX} ${outerArcY}`, class:&#x27;ir-reference-arc&#x27;}));
-        drawing.append(el(&#x27;text&#x27;, {x:x+width+28,y:y+length/2,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;ir-dim-text&#x27;}, t.length));
-        drawing.append(el(&#x27;text&#x27;, {x:x+width/2,y:bottom+31,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;ir-dim-text&#x27;}, t.width));
-        const diagAngle = -theta;
-        const diagonalLength = Math.hypot(width, length);
-        const labelOffset = 18;
-        const diagLabelX = x + width * .58 - (length / diagonalLength) * labelOffset;
-        const diagLabelY = bottom - length * .58 - (width / diagonalLength) * labelOffset;
-        drawing.append(el(&#x27;text&#x27;, {x:diagLabelX,y:diagLabelY,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;ir-dim-text&#x27;,transform:`rotate(${diagAngle} ${diagLabelX} ${diagLabelY})`}, t.diagonal));
         drawing.append(el(&#x27;text&#x27;, {x:x+55,y:bottom-18,class:&#x27;ir-angle-text&#x27;}, `${formatAngle(theta)}°`));
         karbandiDrawing.append(el(&#x27;rect&#x27;, {x, y, width, height:length, class:&#x27;ir-karbandi-outline&#x27;}));
         const karbandiRadius = 76;
@@ -1694,24 +1718,30 @@ html&gt;body{padding:0}&lt;/style&gt;
             class:&#x27;ir-karbandi-outline&#x27;
           }));
         }
-        const rotationCount = Number(karbandiSlider.value);
-        const rotationDivisor = Number(rotationDivisorSlider.value);
+        const baseSideCount = Number(karbandiSlider.value);
+        const selectedRotationDivisor = Number(rotationDivisorSlider.value);
+        const rotationDivisor = rotationDivisorEnabled.checked ? selectedRotationDivisor : 1;
+        const rotationCount = baseSideCount * rotationDivisor;
+        const selectedTemplateAngle = Number(karbandiTemplateSlider.value);
+        const templateAngle = karbandiTemplateEnabled.checked ? selectedTemplateAngle : 0;
+        const templateDepth = width * Math.tan(templateAngle * Math.PI / 360);
+        const sidePoints = `${x-width},${bottom-length} ${x},${bottom-length+templateDepth} ${x+width},${bottom-length}`;
         for (let i = 0; i &lt; rotationCount; i += 1) {
-          karbandiDrawing.append(el(&#x27;rect&#x27;, {
-            x:x-width,
-            y:bottom-length,
-            width:width*2,
-            height:length*2,
+          karbandiDrawing.append(el(&#x27;polyline&#x27;, {
+            points:sidePoints,
             class:&#x27;ir-karbandi-double&#x27;,
             transform:`rotate(${i * theta / rotationDivisor} ${x} ${bottom})`
           }));
         }
-        karbandiValue.textContent = formatInteger(rotationCount);
-        rotationDivisorValue.textContent = formatInteger(rotationDivisor);
-        karbandiSlider.setAttribute(&#x27;aria-valuenow&#x27;, rotationCount);
-        karbandiSlider.setAttribute(&#x27;aria-valuetext&#x27;, `${t.karbandiSlider}: ${formatInteger(rotationCount)}`);
-        rotationDivisorSlider.setAttribute(&#x27;aria-valuenow&#x27;, rotationDivisor);
-        rotationDivisorSlider.setAttribute(&#x27;aria-valuetext&#x27;, `${t.rotationDivisor}: ${formatInteger(rotationDivisor)}`);
+        karbandiValue.textContent = formatInteger(baseSideCount);
+        rotationDivisorValue.textContent = formatInteger(selectedRotationDivisor);
+        karbandiTemplateValue.textContent = `${formatInteger(selectedTemplateAngle)}°`;
+        karbandiSlider.setAttribute(&#x27;aria-valuenow&#x27;, baseSideCount);
+        karbandiSlider.setAttribute(&#x27;aria-valuetext&#x27;, `${t.karbandiSlider}: ${formatInteger(baseSideCount)}؛ ${t.finalSides}: ${formatInteger(rotationCount)}`);
+        rotationDivisorSlider.setAttribute(&#x27;aria-valuenow&#x27;, selectedRotationDivisor);
+        rotationDivisorSlider.setAttribute(&#x27;aria-valuetext&#x27;, `${t.rotationDivisor}: ${formatInteger(selectedRotationDivisor)}`);
+        karbandiTemplateSlider.setAttribute(&#x27;aria-valuenow&#x27;, selectedTemplateAngle);
+        karbandiTemplateSlider.setAttribute(&#x27;aria-valuetext&#x27;, `${t.karbandiTemplate}: ${formatInteger(selectedTemplateAngle)}°`);
         const outputDefs = el(&#x27;defs&#x27;);
         const outputClip = el(&#x27;clipPath&#x27;, {id:&#x27;ir-output-clip&#x27;, clipPathUnits:&#x27;userSpaceOnUse&#x27;});
         outputClip.append(el(&#x27;rect&#x27;, {x, y, width, height:length}));
@@ -1719,11 +1749,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         const outputQuarter = el(&#x27;g&#x27;);
         const outputLines = el(&#x27;g&#x27;, {&#x27;clip-path&#x27;:&#x27;url(#ir-output-clip)&#x27;});
         for (let i = 0; i &lt; rotationCount; i += 1) {
-          outputLines.append(el(&#x27;rect&#x27;, {
-            x:x-width,
-            y:bottom-length,
-            width:width*2,
-            height:length*2,
+          outputLines.append(el(&#x27;polyline&#x27;, {
+            points:sidePoints,
             class:&#x27;ir-karbandi-double&#x27;,
             transform:`rotate(${i * theta / rotationDivisor} ${x} ${bottom})`
           }));
@@ -1768,7 +1795,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         ratioValue.textContent = formatRatio(ratio);
         slider.setAttribute(&#x27;aria-valuenow&#x27;, n);
         slider.setAttribute(&#x27;aria-valuetext&#x27;, t.landLive(formatInteger(n)));
-        [slider, karbandiSlider, rotationDivisorSlider].forEach(updateSliderProgress);
+        [slider, karbandiSlider, rotationDivisorSlider, karbandiTemplateSlider].forEach(updateSliderProgress);
         syncLayers();
       }
       function applyLanguage(nextLanguage) {
@@ -1795,28 +1822,34 @@ html&gt;body{padding:0}&lt;/style&gt;
         root.querySelector(&#x27;#ir-output-quarter-label&#x27;).textContent = t.outputQuarter;
         root.querySelector(&#x27;#ir-output-half-label&#x27;).textContent = t.outputHalf;
         root.querySelector(&#x27;#ir-output-full-label&#x27;).textContent = t.outputFull;
+        root.querySelector(&#x27;#ir-output-options-title&#x27;).textContent = t.outputOptions;
         root.querySelector(&#x27;#ir-download-composite&#x27;).setAttribute(&#x27;aria-label&#x27;, language === &#x27;fa&#x27; ? &#x27;دانلود تصویر PNG ترسیم&#x27; : &#x27;Download drawing as PNG&#x27;);
         root.querySelectorAll(&#x27;.ir-layer-switch&#x27;).forEach((control, index) =&gt; control.setAttribute(&#x27;aria-label&#x27;, t.visibility[index]));
         root.querySelector(&#x27;.ir-controls-panel&#x27;).setAttribute(&#x27;aria-label&#x27;, t.controlsLabel);
         root.querySelector(&#x27;label[for=&quot;ir-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.landSlider}: `;
         root.querySelector(&#x27;label[for=&quot;ir-karbandi-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.karbandiSlider}: `;
         root.querySelector(&#x27;label[for=&quot;ir-rotation-divisor-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.rotationDivisor}: `;
+        root.querySelector(&#x27;label[for=&quot;ir-karbandi-template-slider&quot;]&#x27;).childNodes[0].nodeValue = `${t.karbandiTemplate}: `;
         const readouts = root.querySelectorAll(&#x27;.ir-readout&#x27;);
         readouts[0].querySelectorAll(&#x27;span&#x27;)[0].childNodes[0].nodeValue = `${t.angle}: `;
         readouts[0].querySelectorAll(&#x27;span&#x27;)[1].childNodes[0].nodeValue = `${t.ratio}: `;
         [8,10,12,14,16,18,20].forEach((value,index) =&gt; { root.querySelector(&#x27;#ir-land-scale&#x27;).children[index].textContent = formatInteger(value); });
         [1,4,8,12,16].forEach((value,index) =&gt; { root.querySelector(&#x27;#ir-karbandi-scale&#x27;).children[index].textContent = formatInteger(value); });
-        [1,4,8,12,16].forEach((value,index) =&gt; { root.querySelector(&#x27;#ir-rotation-divisor-scale&#x27;).children[index].textContent = formatInteger(value); });
+        [1,2,3,4,5].forEach((value,index) =&gt; { root.querySelector(&#x27;#ir-rotation-divisor-scale&#x27;).children[index].textContent = formatInteger(value); });
+        [0,30,60,90].forEach((value,index) =&gt; { root.querySelector(&#x27;#ir-karbandi-template-scale&#x27;).children[index].textContent = `${formatInteger(value)}°`; });
         slider.setAttribute(&#x27;aria-label&#x27;, t.landSlider);
         karbandiSlider.setAttribute(&#x27;aria-label&#x27;, t.karbandiSlider);
         rotationDivisorSlider.setAttribute(&#x27;aria-label&#x27;, t.rotationDivisor);
+        karbandiTemplateSlider.setAttribute(&#x27;aria-label&#x27;, t.karbandiTemplate);
         draw(Number(slider.value));
       }
       slider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
       karbandiSlider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
       rotationDivisorSlider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
+      karbandiTemplateSlider.addEventListener(&#x27;input&#x27;, () =&gt; draw(Number(slider.value)));
       outputOptions.addEventListener(&#x27;change&#x27;, () =&gt; draw(Number(slider.value)));
       [landVisible, karbandiVisible, outputVisible].forEach(control =&gt; control.addEventListener(&#x27;change&#x27;, syncLayers));
+      [rotationDivisorEnabled, karbandiTemplateEnabled].forEach(control =&gt; control.addEventListener(&#x27;change&#x27;, () =&gt; draw(Number(slider.value))));
       root.querySelector(&#x27;#ir-download-composite&#x27;).addEventListener(&#x27;click&#x27;, downloadCompositePng);
       languageToggle.addEventListener(&#x27;click&#x27;, () =&gt; applyLanguage(language === &#x27;fa&#x27; ? &#x27;en&#x27; : &#x27;fa&#x27;));
       themeToggle.addEventListener(&#x27;click&#x27;, () =&gt; {
