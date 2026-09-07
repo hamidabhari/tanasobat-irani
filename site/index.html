@@ -1234,6 +1234,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       line-height: 1.5;
     }
     #iranian-ratios-lab .ir-download-global { position: absolute; z-index: 5; top: 14px; left: 14px; }
+    #iranian-ratios-lab .ir-view-switch { position: absolute; z-index: 5; top: 14px; right: 14px; direction: ltr; }
+    #iranian-ratios-lab .ir-view-switch[data-state=&quot;3d&quot;] .ir-switch-thumb { transform: translateX(100%); }
+    #iranian-ratios-lab .ir-model-canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+    #iranian-ratios-lab .ir-model-canvas:active { cursor: grabbing; }
+    #iranian-ratios-lab .ir-model-canvas[hidden] { display: none; }
+    #iranian-ratios-lab .ir-stage[data-view=&quot;3d&quot;] .ir-canvas-stack { visibility: hidden; }
     #iranian-ratios-lab .ir-canvas-stack { position: relative; width: 100%; height: 100%; }
     #iranian-ratios-lab .ir-canvas-stack svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; transition: opacity 180ms ease; }
     #iranian-ratios-lab .ir-canvas-stack svg.is-off { opacity: 0; pointer-events: none; }
@@ -1489,6 +1495,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;ir-workspace&quot;&gt;
       &lt;div class=&quot;ir-canvas-column&quot;&gt;
         &lt;div class=&quot;ir-stage&quot;&gt;
+        &lt;button id=&quot;ir-view-toggle&quot; class=&quot;ir-switch ir-view-switch&quot; data-state=&quot;2d&quot; type=&quot;button&quot; aria-label=&quot;نمای سه‌بعدی&quot; aria-pressed=&quot;false&quot;&gt;
+          &lt;span class=&quot;ir-switch-track&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;ir-switch-thumb&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ir-switch-label&quot;&gt;2D&lt;/span&gt;&lt;span class=&quot;ir-switch-label&quot;&gt;3D&lt;/span&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;canvas id=&quot;ir-model-canvas&quot; class=&quot;ir-model-canvas&quot; hidden tabindex=&quot;0&quot; role=&quot;img&quot; aria-label=&quot;مدل سه‌بعدی کاربندی&quot;&gt;&lt;/canvas&gt;
         &lt;button id=&quot;ir-download-composite&quot; class=&quot;ir-download ir-download-global&quot; type=&quot;button&quot; data-download-name=&quot;iranian-karbandi-composite&quot; aria-label=&quot;دانلود تصویر PNG ترسیم&quot;&gt;&lt;span class=&quot;ir-download-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;
         &lt;div class=&quot;ir-canvas-stack&quot;&gt;
           &lt;svg id=&quot;ir-sample-svg&quot; class=&quot;is-off&quot; viewBox=&quot;0 0 700 500&quot; aria-hidden=&quot;true&quot;&gt;
@@ -1600,6 +1610,13 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;script&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;iranian-ratios-lab&#x27;);
+      const modelCanvas = root.querySelector(&#x27;#ir-model-canvas&#x27;);
+      const viewToggle = root.querySelector(&#x27;#ir-view-toggle&#x27;);
+      const stage = root.querySelector(&#x27;.ir-stage&#x27;);
+      let view3d = false;
+      let modelSegments = [];
+      let modelRadius = 280;
+      let cameraYaw = -.55, cameraPitch = .65, cameraZoom = 1;
       const languageToggle = root.querySelector(&#x27;#ir-language-toggle&#x27;);
       const themeToggle = root.querySelector(&#x27;#ir-theme-toggle&#x27;);
       const slider = root.querySelector(&#x27;#ir-slider&#x27;);
@@ -1705,8 +1722,23 @@ html&gt;body{padding:0}&lt;/style&gt;
         sampleSvg.setAttribute(&#x27;aria-hidden&#x27;, sampleIsVisible ? &#x27;false&#x27; : &#x27;true&#x27;);
         sampleCredit.hidden = !sampleIsVisible;
         fitAllSvgs();
+        rebuildModel();
+        renderModel();
       };
       const downloadCompositePng = () =&gt; {
+        if (view3d) {
+          renderModel();
+          modelCanvas.toBlob(blob =&gt; {
+            if (!blob) return;
+            const link = document.createElement(&#x27;a&#x27;);
+            const url = URL.createObjectURL(blob);
+            link.href = url;
+            link.download = &#x27;iranian-karbandi-3d.png&#x27;;
+            link.click();
+            setTimeout(() =&gt; URL.revokeObjectURL(url), 1000);
+          }, &#x27;image/png&#x27;);
+          return;
+        }
         const clone = el(&#x27;svg&#x27;, {xmlns:ns});
         const sampleActive = sampleThumbs.some(thumb =&gt; thumb.getAttribute(&#x27;aria-pressed&#x27;) === &#x27;true&#x27;);
         const activeSvgs = [[{checked:sampleActive}, sampleSvg], [landVisible, landSvg], [karbandiVisible, karbandiSvg], [outputVisible, outputSvg]]
@@ -1760,6 +1792,143 @@ html&gt;body{padding:0}&lt;/style&gt;
         };
         image.src = url;
       };
+      // Two circular branches meeting at a pointed crown. The supplied PDF
+      // has approximately 0.764 rise/span; offset 2/3 gives sqrt(7/3)/2.
+      // Parameterize each original rib before clipping or mirroring.
+      function rebuildModel() {
+        modelSegments = [];
+        const w = 140 / Math.tan(2 * Math.PI / Number(slider.value));
+        modelRadius = Math.hypot(w, 140);
+        const clipSegment = (a, b, box) =&gt; {
+          if (!box) return [a,b];
+          let lo = 0, hi = 1;
+          const dx = b.x-a.x, dy = b.y-a.y;
+          for (const [p,q] of [[-dx,a.x-box.x0],[dx,box.x1-a.x],[-dy,a.y-box.y0],[dy,box.y1-a.y]]) {
+            if (Math.abs(p)&lt;1e-10) { if(q&lt;0) return null; }
+            else {
+              const t=q/p;
+              if(p&lt;0) lo=Math.max(lo,t); else hi=Math.min(hi,t);
+              if(lo&gt;hi) return null;
+            }
+          }
+          return [{x:a.x+lo*dx,y:a.y+lo*dy},{x:a.x+hi*dx,y:a.y+hi*dy}];
+        };
+        const lift = (p, height=0) =&gt; {
+          const x=p.x-180, y=272-p.y;
+          return {x,y,z:height};
+        };
+        const walk = (node, parentMatrix, box=null) =&gt; {
+          if ([&#x27;defs&#x27;,&#x27;title&#x27;,&#x27;desc&#x27;,&#x27;text&#x27;,&#x27;image&#x27;].includes(node.localName)) return;
+          const local = node.transform?.baseVal.consolidate()?.matrix;
+          const matrix = local ? parentMatrix.multiply(local) : parentMatrix;
+          if(node.hasAttribute(&#x27;clip-path&#x27;)) {
+            const p=new DOMPoint(180,132).matrixTransform(matrix);
+            const q=new DOMPoint(180+w,272).matrixTransform(matrix);
+            box={x0:Math.min(p.x,q.x),x1:Math.max(p.x,q.x),y0:Math.min(p.y,q.y),y1:Math.max(p.y,q.y)};
+          }
+          if(typeof node.getTotalLength===&#x27;function&#x27;) {
+            const rib=node.classList.contains(&#x27;ir-karbandi-double&#x27;);
+            const total=node.getTotalLength();
+            if(!Number.isFinite(total)||total&lt;=0) return;
+            // Even subdivision includes the exact crown (no rounded bridge).
+            const count=Math.min(700,Math.max(2,2*Math.ceil(total/8)));
+            const archHeight = t =&gt; {
+              if(!rib) return 0;
+              const u=Math.abs(2*t-1);
+              const offset=2/3;
+              return w*Math.sqrt(Math.max(0,(1-u)*(1+u+2*offset)));
+            };
+            const at = distance =&gt; {
+              const p=node.getPointAtLength(distance);
+              return new DOMPoint(p.x,p.y).matrixTransform(matrix);
+            };
+            let prev=at(0);
+            for(let i=1;i&lt;=count;i++) {
+              const next=at(total*i/count);
+              const pair=clipSegment(prev,next,box);
+              if(pair) {
+                const dx=next.x-prev.x, dy=next.y-prev.y;
+                const squared=dx*dx+dy*dy;
+                const parameter=p=&gt;((i-1)+(squared&gt;1e-16?((p.x-prev.x)*dx+(p.y-prev.y)*dy)/squared:0))/count;
+                modelSegments.push({a:lift(pair[0],archHeight(parameter(pair[0]))),b:lift(pair[1],archHeight(parameter(pair[1]))),rib});
+              }
+              prev=next;
+            }
+          } else {
+            [...node.children].forEach(child=&gt;walk(child,matrix,box));
+          }
+        };
+        [[landVisible,drawing],[karbandiVisible,karbandiDrawing],[outputVisible,outputDrawing]].forEach(([control,group])=&gt;{
+          if(control.checked) walk(group,new DOMMatrix());
+        });
+      }
+      function renderModel() {
+        if(!view3d) return;
+        const width=stage.clientWidth, height=stage.clientHeight;
+        if(!width||!height) return;
+        const dpr=Math.min(window.devicePixelRatio||1,2);
+        modelCanvas.width=Math.round(width*dpr); modelCanvas.height=Math.round(height*dpr);
+        const ctx=modelCanvas.getContext(&#x27;2d&#x27;);
+        ctx.scale(dpr,dpr);
+        ctx.fillStyle=getComputedStyle(stage).backgroundColor;
+        ctx.fillRect(0,0,width,height);
+        const scale=Math.min(width/(2.4*modelRadius),height/(2.7*modelRadius))*cameraZoom;
+        const project=p=&gt;{
+          const u=p.x*Math.cos(cameraYaw)-p.y*Math.sin(cameraYaw);
+          const v=p.x*Math.sin(cameraYaw)+p.y*Math.cos(cameraYaw);
+          const z=p.z-modelRadius*.6;
+          return {x:width/2+u*scale,y:height/2+(v*Math.sin(cameraPitch)-z*Math.cos(cameraPitch))*scale,
+            depth:v*Math.cos(cameraPitch)+z*Math.sin(cameraPitch)};
+        };
+        const segments=modelSegments.map(s=&gt;({...s,a:project(s.a),b:project(s.b)})).sort((a,b)=&gt;(a.a.depth+a.b.depth)-(b.a.depth+b.b.depth));
+        ctx.lineCap=&#x27;round&#x27;; ctx.lineJoin=&#x27;round&#x27;;
+        for(const s of segments) {
+          ctx.beginPath(); ctx.moveTo(s.a.x,s.a.y); ctx.lineTo(s.b.x,s.b.y);
+          ctx.strokeStyle=s.rib?&#x27;#101010&#x27;:(theme===&#x27;dark&#x27;?&#x27;#92968f&#x27;:&#x27;#94958c&#x27;);
+          ctx.lineWidth=s.rib?Math.max(2.2,modelRadius*.009*scale):.8;
+          ctx.stroke();
+          if(s.rib) {
+            ctx.strokeStyle=&#x27;#414141&#x27;; ctx.lineWidth=Math.max(.55,modelRadius*.002*scale); ctx.stroke();
+          }
+        }
+      }
+      function syncView() {
+        stage.dataset.view=view3d?&#x27;3d&#x27;:&#x27;2d&#x27;;
+        modelCanvas.hidden=!view3d;
+        viewToggle.dataset.state=view3d?&#x27;3d&#x27;:&#x27;2d&#x27;;
+        viewToggle.setAttribute(&#x27;aria-pressed&#x27;,String(view3d));
+        viewToggle.setAttribute(&#x27;aria-label&#x27;,language===&#x27;fa&#x27;?(view3d?&#x27;نمای دوبعدی&#x27;:&#x27;نمای سه‌بعدی&#x27;):(view3d?&#x27;Switch to 2D&#x27;:&#x27;Switch to 3D&#x27;));
+        modelCanvas.setAttribute(&#x27;aria-label&#x27;,language===&#x27;fa&#x27;?&#x27;مدل سه‌بعدی؛ برای چرخش بکشید، برای بزرگ‌نمایی اسکرول کنید؛ کلیدهای جهت و مثبت و منفی&#x27;:&#x27;3D model; drag to orbit, scroll to zoom; arrow keys and plus/minus&#x27;);
+        renderModel();
+      }
+      viewToggle.addEventListener(&#x27;click&#x27;,()=&gt;{view3d=!view3d;syncView();});
+      let orbitPointer=null;
+      modelCanvas.addEventListener(&#x27;pointerdown&#x27;,e=&gt;{
+        orbitPointer={x:e.clientX,y:e.clientY,id:e.pointerId};
+        modelCanvas.setPointerCapture(e.pointerId);
+      });
+      modelCanvas.addEventListener(&#x27;pointermove&#x27;,e=&gt;{
+        if(!orbitPointer||orbitPointer.id!==e.pointerId) return;
+        cameraYaw+=(e.clientX-orbitPointer.x)*.009;
+        cameraPitch=Math.max(-1.4,Math.min(Math.PI/2,cameraPitch+(e.clientY-orbitPointer.y)*.009));
+        orbitPointer.x=e.clientX;orbitPointer.y=e.clientY;renderModel();
+      });
+      [&#x27;pointerup&#x27;,&#x27;pointercancel&#x27;,&#x27;lostpointercapture&#x27;].forEach(event=&gt;modelCanvas.addEventListener(event,()=&gt;{orbitPointer=null;}));
+      modelCanvas.addEventListener(&#x27;wheel&#x27;,e=&gt;{
+        e.preventDefault();cameraZoom=Math.max(.45,Math.min(3,cameraZoom*Math.exp(-e.deltaY*.001)));renderModel();
+      },{passive:false});
+      modelCanvas.addEventListener(&#x27;keydown&#x27;,e=&gt;{
+        if(![&#x27;ArrowLeft&#x27;,&#x27;ArrowRight&#x27;,&#x27;ArrowUp&#x27;,&#x27;ArrowDown&#x27;,&#x27;+&#x27;,&#x27;-&#x27;,&#x27;=&#x27;].includes(e.key)) return;
+        e.preventDefault();
+        if(e.key===&#x27;ArrowLeft&#x27;) cameraYaw-=.1;
+        if(e.key===&#x27;ArrowRight&#x27;) cameraYaw+=.1;
+        if(e.key===&#x27;ArrowUp&#x27;) cameraPitch=Math.min(Math.PI/2,cameraPitch+.1);
+        if(e.key===&#x27;ArrowDown&#x27;) cameraPitch=Math.max(-1.4,cameraPitch-.1);
+        if(e.key===&#x27;+&#x27;||e.key===&#x27;=&#x27;) cameraZoom=Math.min(3,cameraZoom*1.1);
+        if(e.key===&#x27;-&#x27;) cameraZoom=Math.max(.45,cameraZoom/1.1);
+        renderModel();
+      });
+      new ResizeObserver(()=&gt;renderModel()).observe(stage);
       function draw(n) {
         const t = copy[language];
         const theta = 360 / n;
@@ -1929,6 +2098,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         themeToggle.setAttribute(&#x27;aria-label&#x27;, theme === &#x27;dark&#x27; ? t.themeLight : t.themeDark);
         root.querySelector(&#x27;#ir-page-title&#x27;).textContent = t.pageTitle;
         root.querySelector(&#x27;#ir-footer&#x27;).textContent = t.footer;
+        syncView();
         root.querySelector(&#x27;.ir-shell&#x27;).setAttribute(&#x27;aria-label&#x27;, t.pageTitle);
         root.querySelector(&#x27;#ir-svg-title&#x27;).textContent = t.landSvgTitle;
         root.querySelector(&#x27;#ir-svg-desc&#x27;).textContent = t.landSvgDesc;
@@ -1984,9 +2154,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       themeToggle.addEventListener(&#x27;click&#x27;, () =&gt; {
         themeIsManual = true;
         applyTheme(theme === &#x27;dark&#x27; ? &#x27;light&#x27; : &#x27;dark&#x27;);
+        renderModel();
       });
       systemTheme.addEventListener(&#x27;change&#x27;, event =&gt; {
         if (!themeIsManual) applyTheme(event.matches ? &#x27;dark&#x27; : &#x27;light&#x27;);
+        renderModel();
       });
       applyTheme(theme);
       applyLanguage(&#x27;fa&#x27;);
