@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>آموزش زمین‌های ایرانی | مبانی ترسیم</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23f3efdf' d='M0 0h32v32H0z'/%3E%3Cpath fill='none' stroke='%23cb4327' stroke-width='2' d='M8 5h16v22H8zM8 5l16 22'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../shared/embedded.css"></head>
+<body><main id="top">
+<header><h1>مبانی زمین‌های ایرانی</h1></header>
+<div class="workspace">
+<section class="canvas-column" aria-label="صفحهٔ ترسیم">
+<div class="canvas-top"><span id="view-title">تعریف زمین</span></div>
+<div class="sheet">
+<div id="definition"><span class="eyebrow">تعریف</span><p>زمین هر عدد مانند <em data-definition-number>۱۲</em>، مستطیلی است که زاویهٔ بین <em>طول و قطر</em> آن <em><span data-definition-number>۱۲</span> بار</em> در دایره بگنجد.</p></div>
+<svg id="canvas" viewBox="0 0 800 540" role="img" aria-labelledby="diagram-title"><title id="diagram-title"></title><g id="geometry"></g></svg>
+<div id="math" class="math"><span class="eyebrow">به زبان ریاضی</span><div class="equation"><span>زاویهٔ بین طول و قطر زمین <b id="land-number">۱۲</b></span><span id="equation" dir="ltr">۳۶۰° ÷ ۱۲ = ۳۰°</span></div></div>
+</div>
+</section>
+<aside aria-label="ابزارهای ترسیم"><div class="tools-heading"><h2>ابزارهای ترسیم</h2><span>۰۱ — ۰۳</span></div>
+<p class="intro">یک ابزار را انتخاب کنید و شمارهٔ زمین را تغییر دهید.</p>
+<div id="tools">
+<section class="tool active"><label class="tool-label"><input type="radio" name="mode" value="definition" checked><span class="tool-index">۰۱</span><span><strong>تعریف زمین</strong><small>زاویه، مستطیل و نسبت</small></span><span class="radio-mark"></span></label><div class="slider-panel"><div class="slider-heading"><label for="definition-range">شمارهٔ زمین</label><output for="definition-range">۱۲</output></div><input id="definition-range" type="range" min="8" max="22" step="1" value="12"><div class="range-limits"><span>۸</span><span>۲۲</span></div></div></section>
+<section class="tool"><label class="tool-label"><input type="radio" name="mode" value="comparison"><span class="tool-index">۰۲</span><span><strong>مقایسهٔ زمین‌ها</strong><small>زمین‌های ۸ تا ۲۶ در یک نگاه</small></span><span class="radio-mark"></span></label><div class="slider-panel" hidden><div class="slider-heading"><label for="comparison-range">شمارهٔ زمین</label><output for="comparison-range">۱۲</output></div><input id="comparison-range" type="range" min="8" max="26" step="1" value="12" disabled><div class="range-limits"><span>۸</span><span>۲۶</span></div></div></section>
+<section class="tool"><label class="tool-label"><input type="radio" name="mode" value="polygon"><span class="tool-index">۰۳</span><span><strong>زمین و چندضلعی منتظم</strong><small>رابطهٔ زمین با دایره و چندضلعی</small></span><span class="radio-mark"></span></label><div class="slider-panel" hidden><div class="slider-heading"><label for="polygon-range">شمارهٔ زمین</label><output for="polygon-range">۱۲</output></div><input id="polygon-range" type="range" min="8" max="22" step="1" value="12" disabled><div class="range-limits"><span>۸</span><span>۲۲</span></div></div></section>
+</div>
+<div class="readout"><span>زمین انتخاب‌شده</span><strong id="selected-land">زمین ۱۲</strong><div><span>زاویهٔ طول و قطر</span><b id="selected-angle">۳۰°</b></div><div><span>نسبت طول به عرض</span><b id="selected-ratio">۱٫۷۳۲</b></div></div>
+<p class="keyboard-hint">برای تغییر دقیق عدد، از کلیدهای جهت روی اسلایدر استفاده کنید.</p>
+</aside></div>
+</main><script type="module" src="lesson.js"></script><script type="module" src="../shared/preferences.js"></script></body></html>

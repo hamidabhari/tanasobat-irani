@@ -1,0 +1,27 @@
+@font-face{font-family:Vazirmatn;src:url('../assets/Vazirmatn-VariableFont_wght.ttf') format('truetype');font-weight:100 900;font-display:swap}
+html{color-scheme:light;--paper:#f3efdf;--ink:#19261f;--muted:#667068;--line:#c9c6b8;--sheet:#faf7ed;--diagram:#e6e2d3;background:var(--paper)}
+html[data-theme=dark]{color-scheme:dark;--paper:#1d211e;--ink:#f0eee6;--muted:#aaa99f;--line:#575851;--sheet:#292d29;--diagram:#292d29;--red:#e7654d}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Vazirmatn,Tahoma,Arial,sans-serif;display:flow-root}
+html.embedded main{min-height:0;padding-top:0}
+html.embedded main>header,html.embedded main>footer,html.embedded #iranian-ratios-lab .ir-toolbar,html.embedded #iranian-ratios-lab .ir-footer{display:none}
+html.embedded #iranian-ratios-lab{min-height:0;box-shadow:none}
+html.embedded #iranian-ratios-lab .ir-shell{padding-top:26px}
+html[dir=ltr] .canvas-column,html[dir=ltr] aside{direction:ltr}
+html[dir=ltr] .select-land,html[dir=ltr] .sample{text-align:left}
+html[dir=ltr] .card{border-right:1px solid var(--line);border-left:3px solid var(--color)}
+html[dir=ltr] .add small,html[dir=ltr] .indicator{margin-right:0;margin-left:auto}
+html[data-theme=dark] .card.active{background:#ffffff0a}
+html[data-theme=dark] #geometry [stroke="#263c32"]{stroke:var(--ink)}
+html[data-theme=dark] #geometry [fill="#263c32"]{fill:var(--ink)}
+html[data-theme=dark] #geometry [fill="#f3efdf"]{fill:var(--paper)}
+html[data-theme=dark] .sheet,html[data-theme=dark] .tool.active{background:var(--sheet)}
+html[data-theme=dark] .problem p{color:var(--ink)}
+button,input{font-family:inherit}button{color:inherit}
+html[dir=ltr] .radio-mark{margin-right:0;margin-left:auto}
+html.embedded .stage{height:560px;min-height:440px}
+html.embedded .diagram{height:720px;min-height:0}
+html.embedded #controls{max-height:440px}
+html.embedded #iranian-ratios-lab{--muted-foreground:var(--muted)}
+html[data-theme=dark] .slider-card,html[data-theme=dark] .carpet-toggle,html[data-theme=dark] .image-upload{background:#ffffff06}
+@media(max-width:850px){html.embedded .stage{height:400px;min-height:330px}html.embedded #controls{max-height:340px}}
+@media(max-width:640px){html.embedded .diagram{height:500px}}
