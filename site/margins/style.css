@@ -19,12 +19,23 @@ html[dir=ltr] .hero{direction:ltr} .problem p{color:var(--ink)} .diagram{backgro
 .mini-toggle{direction:rtl}.mini-toggle i{margin-left:0;margin-right:3px}
 [hidden]{display:none!important}
 
-/* Labels belong to the canvas rather than thin, potentially coincident borders. */
-.diagram{grid-template-rows:minmax(0,1fr) auto;gap:20px;--plot-max-height:480px}
-.plot-10{width:min(82%,calc(var(--plot-max-height) * var(--land-ratio)));max-height:none}
-.diagram-labels{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;align-self:end}
-.diagram-labels .label{position:static;display:grid;min-width:0;white-space:normal;padding-inline-start:9px;border-inline-start:3px solid var(--label-color);color:var(--ink);text-shadow:none;text-align:start;gap:3px}
-.diagram-labels .label span{font-size:12px}
-.diagram-labels .label small{display:block;color:var(--muted);font-size:9px}
-@media(max-width:1050px){.diagram-wrap{grid-row:1}.diagram{--plot-max-height:450px}}
-@media(max-width:640px){.diagram{--plot-max-height:330px;gap:16px}.diagram-labels{gap:8px 12px}.diagram-labels .label span{font-size:11px}.diagram-labels .label small{font-size:8px}}
+
+.problem{display:block}
+.diagram{grid-template-rows:1fr;padding:28px;--plot-max-height:500px}
+html.embedded .diagram{height:clamp(390px,calc(var(--available-height,600px) - 44px),650px);min-height:0}
+.plot-10{width:min(90%,calc(var(--plot-max-height) * var(--land-ratio)));max-height:none}
+.plot{container-type:inline-size}
+.plot>.label{z-index:5;top:6px;right:6px;max-width:calc(100% - 12px);white-space:normal;text-align:right;gap:2px;line-height:1.2}
+.plot>.label span{font-size:clamp(6px,8cqw,12px)}
+.plot>.label small{display:block;font-size:clamp(5px,5cqw,9px);opacity:1}
+#label-1{top:auto;bottom:6px}
+#label-2{right:auto;left:6px;text-align:left}
+#label-3{top:50%;left:50%;right:auto;transform:translate(-50%,-50%);width:max-content;max-width:calc(100% - 6px);text-align:center}
+@media(max-width:1050px){.diagram-wrap{grid-row:1}}
+@media(max-width:640px){.diagram{padding:20px 12px;--plot-max-height:370px}html.embedded .diagram{height:420px}.plot>.label{top:4px;right:4px;max-width:calc(100% - 8px)}#label-1{top:auto;bottom:4px}#label-2{right:auto;left:4px}#label-3{top:50%;right:auto;max-width:calc(100% - 4px)}}
+/* Matching backplates keep labels readable when the next border is very thin. */
+.plot>.label{padding:3px 4px;border-radius:2px;background:var(--red)}
+#label-1{background:var(--yellow);color:#352a00}
+#label-2{background:var(--purple);color:#fff}
+#label-3{background:var(--green);color:#fff}
+.hero{align-items:start;padding-top:24px;padding-bottom:24px}

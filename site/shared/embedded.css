@@ -19,9 +19,9 @@ html[data-theme=dark] .problem p{color:var(--ink)}
 button,input{font-family:inherit}button{color:inherit}
 html[dir=ltr] .radio-mark{margin-right:0;margin-left:auto}
 html.embedded .stage{height:560px;min-height:440px}
-html.embedded .diagram{height:720px;min-height:0}
+
 html.embedded #controls{max-height:440px}
 html.embedded #iranian-ratios-lab{--muted-foreground:var(--muted)}
 html[data-theme=dark] .slider-card,html[data-theme=dark] .carpet-toggle,html[data-theme=dark] .image-upload{background:#ffffff06}
 @media(max-width:850px){html.embedded .stage{height:400px;min-height:330px}html.embedded #controls{max-height:340px}}
-@media(max-width:640px){html.embedded .diagram{height:500px}}
+

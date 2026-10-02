@@ -66,6 +66,7 @@ const phrases={
 'فرش اردبیل':'Ardabil Carpet',
 'تصویر فقط در مرورگر شما خوانده می‌شود و جایی ارسال نمی‌شود.':'Your image stays in your browser and is never uploaded.',
 'ترسیم پاسخ':'Result drawing',
+'ترسیم':'Drawing',
 'چهار مستطیل تعاملی تو در تو':'Four interactive nested rectangles',
 'مساحت مبنا:':'Base area:',
 'از زمین نخستین':'of the initial rectangle',

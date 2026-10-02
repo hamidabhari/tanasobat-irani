@@ -36,6 +36,7 @@ function reportHeight(){if(!embedded)return;const height=Math.ceil(document.body
 window.addEventListener('message',event=>{
  if(event.source!==parent||event.origin!==location.origin||event.data?.type!=='iranian-preferences')return;
  const prefs=event.data;if(!['fa','en'].includes(prefs.language)||!['light','dark'].includes(prefs.theme))return;
+ if(Number.isFinite(prefs.availableHeight)){document.documentElement.style.setProperty('--available-height',prefs.availableHeight+'px');document.documentElement.dataset.compact=prefs.availableHeight<620;}
  language=prefs.language;document.documentElement.lang=language;document.documentElement.dir=language==='fa'?'rtl':'ltr';document.documentElement.dataset.theme=prefs.theme;
  if(nativePreferences)window.setProjectPreferences(prefs);else localize();
  requestAnimationFrame(reportHeight);

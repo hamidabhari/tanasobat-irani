@@ -3,16 +3,10 @@ const $=s=>document.querySelector(s),fmt=(n,d=0)=>n.toLocaleString('fa-IR',{mini
 const values=[10,50,10,50],visible=[true,true,true,true],colors=['#cb4327','#efb90b','#4d438e','#3a9e58'],labels=['شمارهٔ زمین نخست','حاشیهٔ اول','حاشیهٔ دوم','حاشیهٔ سوم'];
 let show=false,custom=null,revision=0;
 $('#controls').innerHTML=values.map((v,i)=>`<div class="slider-card" style="--slider-color:${colors[i]}"><span class="slider-top"><label for="range-${i}">${labels[i]}</label><span class="slider-actions">${i?`<button class="mini-toggle is-on" data-toggle="${i}" type="button" role="switch" aria-checked="true" aria-label="نمایش ${labels[i]}"><i></i></button>`:''}<output id="value-${i}" for="range-${i}"></output></span></span><input id="range-${i}" data-index="${i}" type="range" min="${i?0:8}" max="${i?80:22}" step="1" value="${v}"><span class="range-limits"><small>${i?'۰٪':'۸'}</small><small>${i?'۸۰٪':'۲۲'}</small></span></div>`).join('');
-// Keep labels on the drawing surface, outside the nested stacking contexts.
-// Even a zero-width border must retain a readable rectangle number.
-const diagramLabels=document.createElement('div');
-diagramLabels.className='diagram-labels';
-for(let i=0;i<4;i++){
- const label=$('#label-'+i);
- label.style.setProperty('--label-color',colors[i]);
- diagramLabels.append(label);
-}
-$('.diagram').append(diagramLabels);
+new ResizeObserver(()=>{
+ const diagram=$('.diagram'),style=getComputedStyle(diagram);
+ diagram.style.setProperty('--plot-max-height',Math.max(100,diagram.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom))+'px');
+}).observe($('.diagram'));
 function render(){
  const geometry=nestedRectangles(values[0],values.slice(1));
  $('#problem').textContent=`یک زمین ${fmt(values[0])} رسم کنید. از چهار طرف به‌اندازه‌ای حاشیه بدهید که مساحت حاشیه برابر با ${fmt(values[1])}٪ مساحت کل باشد. سپس همین کار را برای زمین تازه، با حاشیهٔ ${fmt(values[2])}٪ و پس از آن با حاشیهٔ ${fmt(values[3])}٪ تکرار کنید.`;
