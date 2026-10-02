@@ -33,9 +33,7 @@ html.embedded .diagram{height:clamp(390px,calc(var(--available-height,600px) - 4
 #label-3{top:50%;left:50%;right:auto;transform:translate(-50%,-50%);width:max-content;max-width:calc(100% - 6px);text-align:center}
 @media(max-width:1050px){.diagram-wrap{grid-row:1}}
 @media(max-width:640px){.diagram{padding:20px 12px;--plot-max-height:370px}html.embedded .diagram{height:420px}.plot>.label{top:4px;right:4px;max-width:calc(100% - 8px)}#label-1{top:auto;bottom:4px}#label-2{right:auto;left:4px}#label-3{top:50%;right:auto;max-width:calc(100% - 4px)}}
-/* Matching backplates keep labels readable when the next border is very thin. */
-.plot>.label{padding:3px 4px;border-radius:2px;background:var(--red)}
-#label-1{background:var(--yellow);color:#352a00}
-#label-2{background:var(--purple);color:#fff}
-#label-3{background:var(--green);color:#fff}
+/* Labels remain within their rectangles without a colored backplate. */
+.plot>.label{padding:0;background:transparent;color:#fff;text-shadow:0 1px 3px #0009}
+#label-1,#label-2,#label-3{background:transparent;color:#fff}
 .hero{align-items:start;padding-top:24px;padding-bottom:24px}
