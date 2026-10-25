@@ -1,7 +1,7 @@
 import {setupIntro} from './intro.js';
 let intro;
 const $=s=>document.querySelector(s),tabs=[...document.querySelectorAll('[role=tab]')];
-const copy={fa:{title:'تناسبات ایرانی',tabs:['مبانی زمین‌های ایرانی','حاشیه و متن در زمین‌های ایرانی','ابزار ترسیم زمین‌های ایرانی','ترسیم کاربندی با تناسبات ایرانی'],copyright:'© حمید ابهری - ۱۴۰۵'},en:{title:'Iranian Proportions',tabs:['Foundations of Iranian Rectangles','Border and Field in Iranian Rectangles','Iranian Rectangle Drawing Tool','Drawing Karbandi with Iranian Proportions'],copyright:'© Hamid Abhari - 2026'}};
+const copy={fa:{title:'تناسبات ایرانی',tabs:['مبانی زمین‌های ایرانی','حاشیه و متن در زمین‌های ایرانی','ابزار ترسیم زمین‌های ایرانی','ترسیم کاربندی با تناسبات ایرانی'],copyright:'© حمید ابهری - ۱۴۰۵'},en:{title:'Iranian Proportions',tabs:['Foundations of Iranian Plots','Border and Field in Iranian Plots','Iranian Plot Drawing Tool','Drawing Karbandi with Iranian Proportions'],copyright:'© Hamid Abhari - 2026'}};
 const system=matchMedia('(prefers-color-scheme: dark)');
 let language='fa',theme=system.matches?'dark':'light',manualTheme=false;
 try{language=localStorage.getItem('iranian-language')==='en'?'en':'fa';const saved=localStorage.getItem('iranian-theme');if(['light','dark'].includes(saved)){theme=saved;manualTheme=true;}}catch{}

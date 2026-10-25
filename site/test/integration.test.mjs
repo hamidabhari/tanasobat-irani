@@ -15,7 +15,7 @@ test('nested borders preserve requested area and equal physical inset',()=>{
  }
 });
 test('translations cover dynamic labels, proportions and narrative',()=>{
- assert.equal(translate('زمین ۱۲، لایهٔ ۲'),'Rectangle 12, Layer 2');
+ assert.equal(translate('زمین ۱۲، لایهٔ ۲'),'Plot 12, Layer 2');
  assert.equal(translate('۳ از ۱۰'),'3 of 10');
  assert.equal(translate('حاشیه ۵۰٪ · متن ۵۰٪'),'Border 50% · Field 50%');
  assert.equal(translate('نسبت طول به عرض'),'Length-to-width ratio');
