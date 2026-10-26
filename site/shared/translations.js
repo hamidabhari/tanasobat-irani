@@ -41,7 +41,6 @@ const phrases={
 'نسبت‌ها در تغییر مقیاس ثابت می‌مانند.':'Proportions remain constant when resizing.',
 'نمایش شاهنامهٔ تهماسبی':'Show the Shahnameh of Shah Tahmasp',
 'قارن، بارمان را از اسب می‌اندازد':'Qaran unhorses Barman',
-'شاهنامهٔ شاه تهماسب · مجموعه ساریخانی':'Shahnameh of Shah Tahmasp · Sarikhani Collection',
 'بدون تصویر زمینه':'No background image',
 'تصویر زمینه':'Background image',
 'حذف تصویر':'Remove image',

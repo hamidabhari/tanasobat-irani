@@ -13,7 +13,7 @@ function localize(){
   if(!record||node.nodeValue!==record.output)record={source:node.nodeValue};
   // Uploaded filenames are user content. Only translate the built-in status.
   const filename=node.parentElement.closest('#image-name');
-  if(filename&&!['بدون تصویر زمینه','شاهنامهٔ شاه تهماسب · مجموعه ساریخانی'].includes(record.source))continue;
+  if(filename&&!['بدون تصویر زمینه','Qaran Unhorses Barman, about 1525-35, Tabriz, Iran, Ink, Watercolour and gold on paper, The Sarikhani Collection, I.MS.4025'].includes(record.source))continue;
   record.output=language==='en'?translate(record.source):record.source;
   if(node.nodeValue!==record.output)node.nodeValue=record.output;
   records.set(node,record);
